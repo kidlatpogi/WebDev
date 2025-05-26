@@ -1,0 +1,165 @@
+/* Navbar styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-sizing: border-box;
+    height: 60px;
+    line-height: 60px;
+    overflow: visible; /* Allow content to be visible, no scroll */
+}
+
+/* Nav container for centering and positioning */
+.nav-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible; /* Allow content to be visible, no scroll */
+}
+
+/* Center navigation links */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* Remove underline from navigation links */
+nav ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* User dropdown on the right */
+.user-dropdown-wrapper {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#user-dropdown {
+    cursor: pointer;
+    padding: 8px 18px;
+    border-radius: 6px;
+    position: relative;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+#logout-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 100px;
+    z-index: 1000;
+}
+
+#logout-menu button {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Add space so content is not hidden under navbar */
+body {
+    margin: 0;
+    padding-top: 60px; /* Match nav height */
+}
+
+/* Hide scrollbar but allow vertical scrolling */
+html, body {
+    margin: 0;
+    padding-top: 60px;
+    overflow-y: scroll;
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE and old Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0px;                  /* Chromium browsers like Edge */
+    background: transparent;
+}
+
+/* Header and chooser styles */
+hr {
+    margin-top: 0;
+}
+
+.header-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chooser-table {
+    display: flex;
+    justify-content: center;
+}
+
+#room-grid {
+    width: 90%;
+    margin: 30px auto 0 auto;
+    text-align: center;
+}
+
+/* Modal styles */
+#photo-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-content {
+    display: flex;
+    background: none;
+    align-items: center;
+}
+
+#modal-img {
+    width: 450px;
+    height: 450px;
+    border: none;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#modal-desc {
+    color: #fff;
+    margin-left: 30px;
+    max-width: 350px;
+    font-size: 16px;
+}
+
+html, body {
+    overflow-x: hidden;
+}

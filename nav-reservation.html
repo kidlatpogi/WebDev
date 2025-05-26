@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Room Reservation</title>
+    <link rel="stylesheet" href="nav-reservation.css" />
+    <script src="nav-reservation.js"></script>
+    <script src="reserveroom.js" defer></script>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav>
+      <div class="nav-container">
+          <!-- Centered navigation links -->
+          <ul>
+              <li><a href="nav-rooms.html">Rooms</a></li>
+              <li><a href="nav-reservation.html">Reservation</a></li>
+              <li><a href="nav-account.html">Account</a></li>
+          </ul>
+          <!-- User dropdown logout -->
+          <div class="user-dropdown-wrapper">
+              <div id="user-dropdown">
+                  Hi, User
+                  <div id="logout-menu">
+                      <button onclick="logoutUser()">Logout</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header-center">
+        <h1>Room Reservation</h1>
+    </div>
+
+    <form action="insert_reservation.php" method="post">
+
+        <!-- Name fields -->
+        <div class="form-names">
+            <div class="form-col">
+                <label for="fname">Firstname</label>
+                <input type="text" id="fname" name="fname" placeholder="Firstname" required />
+            </div>
+            <div class="form-col">
+                <label for="lname">Lastname</label>
+                <input type="text" id="lname" name="lname" placeholder="Lastname" required />
+            </div>
+        </div>
+
+        <!-- Floor, Room Type, Room -->
+        <div class="form-row">
+            <div class="form-col">
+                <label for="floor">Floor</label>
+                <select id="floor" name="floor" required>
+                    <option value="4th">4th Floor</option>
+                    <option value="5th">5th Floor</option>
+                </select>
+            </div>
+            <div class="form-col">
+                <label for="roomType">Room Type</label>
+                <select id="roomType" name="roomType" required>
+                    <option value="Lecture">Lecture</option>
+                    <option value="Laboratory">Laboratory</option>
+                </select>
+            </div>
+            <div class="form-col">
+                <label for="room">Room</label>
+                <select id="room" name="room" required>
+                </select>
+            </div>
+        </div>
+
+        <!-- Date, Start Time, End Time -->
+        <div class="form-date-time">
+            <div class="form-col">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required />
+            </div>
+            <div class="form-col">
+                <label for="starttime">Start Time</label>
+                <input type="time" id="starttime" name="starttime" required min="07:00" max="21:00" step="3600" />
+            </div>
+            <div class="form-col">
+                <label for="endtime">End Time</label>
+                <input type="time" id="endtime" name="endtime" required min="07:00" max="21:00" step="3600" />
+            </div>
+        </div>
+
+        <!-- Submit button -->
+        <div class="submit-row">
+            <button type="submit">Reserve</button>
+        </div>
+
+    </form>
+
+    <script src="function-logout.js"></script>
+</body>
+</html>
