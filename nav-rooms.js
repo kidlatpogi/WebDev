@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             var img = document.createElement("img");
-            img.src = "photos/sample_image.png";
+            img.src = "Photos/sample_image.png";
             img.alt = "Room " + roomNum;
             img.style.width = "200px";
             img.style.height = "200px";
