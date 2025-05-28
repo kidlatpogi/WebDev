@@ -116,100 +116,94 @@ body {
     align-items: center;
 }
 
-/* Form and chooser styles */
-form {
-    max-width: 900px;
-    margin: auto;
-}
-
+/* Rad button */
 .chooser-table {
     display: flex;
     justify-content: center;
 }
 
-.form-names,
-.form-row,
-.form-date-time {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.form-row {
-    margin-top: 20px;
-}
-
-.form-date-time {
-    margin-top: 20px;
-}
-
-.form-col {
+/* Cardview */
+.history-cardview-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    margin-top: 40px;
+    gap: 32px; /* space between cards */
 }
 
-/* Reusable just tweak some of it */
-/* Account page layout */
-.account-main {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto 0 auto;
-    max-width: 700px;
-    padding: 20px;
+.history-card {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 32px 40px;
+    min-width: 340px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
 }
 
-/* Reusable just tweak some of it */
-.submit-row button {
-    padding: 8px 22px;
-    border-radius: 6px;
-    background: #1F265F;
-    color: #fff;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
+.history-status {
+    color: #0078d7;
     font-weight: 600;
-    transition: background 0.2s;
-    display: block;
-    margin: 0 auto;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
-.submit-row button:hover {
-    background: #FFD41C;
+.history-title {
+    font-size: 22px;
+    margin: 0 0 12px 0;
+    color: #222;
 }
 
-/* fields */
-.account-form input {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
+.history-date {
+    color: #666;
+    font-size: 15px;
+    margin: 0;
 }
 
-/* Add this to style all textfields like account-form input */
-input[type="text"],
-input[type="date"],
-input[type="time"],
-select {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
+.history-time {
+    color: #444;
+    font-size: 15px;
+    margin: 8px 0 0 0;
+}
+
+/* Status-specific colors for history cards */
+/* Ongoing */
+.history-status.ongoing {
+    color: #0078d7 !important;
+}
+
+/* Completed */
+.history-status.completed {
+    color: #28a745 !important;
+}
+
+/* Cancelled */
+.history-status.cancelled {
+    color: #dc052d !important;
+}
+
+/* Responsive styles for cardview */
+@media (max-width: 700px) {
+    .history-cardview-wrapper {
+        gap: 18px;
+        margin-top: 20px;
+    }
+    .history-card {
+        min-width: 0;
+        max-width: 88vw;
+        width: 100%;
+        padding: 18px 8vw;
+        box-sizing: border-box;
+    }
+    .history-title {
+        font-size: 1.1rem;
+    }
+    .history-status,
+    .history-date,
+    .history-time {
+        font-size: 0.98rem;
+    }
 }
 
 /* Reusable responsive bar */
@@ -352,36 +346,6 @@ select {
     }
     .hamburger-menu {
         display: block !important;
-    }
-}
-
-/* Responsive styles for reservation form */
-@media (max-width: 700px) {
-    .account-main {
-        padding: 10px;
-        gap: 20px;
-    }
-    .form-names,
-    .form-row,
-    .form-date-time {
-        flex-direction: column;
-        gap: 0;
-        align-items: stretch;
-    }
-    .form-col {
-        width: 100%;
-    }
-    form {
-        padding: 0 5px;
-    }
-    .submit-row {
-        text-align: center;
-    }
-    input[type="text"],
-    input[type="date"],
-    input[type="time"],
-    select {
-        font-size: 0.98rem;
     }
 }
 /* End reusable responsive visibility */

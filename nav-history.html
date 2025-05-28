@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooms</title>
 
-    <link rel="icon" type="image/x-icon" href="Photos/logo-calendar.png">
-    <link rel="stylesheet" href="nav-rooms.css">
+    <title>History</title>
+
+    <link rel="icon" type="image/x-icon" href="Photos/logo-history.png">
+    <link rel="stylesheet" href="nav-history.css">
 </head>
 <body>
     <!-- Desktop Navbar -->
@@ -39,7 +40,7 @@
     <div class="hamburger-menu">
 
     <input id="menu__toggle" type="checkbox" />
-
+    
     <label class="menu__btn" for="menu__toggle">
         <span></span>
     </label>
@@ -54,48 +55,36 @@
         </ul>
     </div>
     <!-- Hamburger Navigation End -->
-
+    
     <!-- Header -->
     <div class="header-center">
-        <h1>Rooms</h1>
+        <h1>Reservation History</h1>
     </div>
 
-    <!-- Chooser -->
     <table class="chooser-table" cellpadding="5">
         <tr>
             <td>
-                <input type="radio" id="4th-floor" name="floor" value="4th Floor" checked>
-                <label for="4th-floor">4th Floor</label>
+                <input type="radio" id="ongoing" name="history-status" value="Ongoing" checked>
+                <label for="ongoing">Ongoing</label>
             </td>
             <td>
-                <input type="radio" id="5th-floor" name="floor" value="5th Floor">
-                <label for="5th-floor">5th Floor</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" id="lecture-room" name="room-type" value="Lecture Room" checked>
-                <label for="lecture-room">Lecture</label>
+                <input type="radio" id="completed" name="history-status" value="Completed">
+                <label for="completed">Completed</label>
             </td>
             <td>
-                <input type="radio" id="laboratory-room" name="room-type" value="Laboratory Room">
-                <label for="laboratory-room">Laboratory</label>
+                <input type="radio" id="cancelled" name="history-status" value="Cancelled">
+                <label for="cancelled">Cancelled</label>
             </td>
         </tr>
     </table>
 
-    <!-- Room grid -->
-    <div id="room-grid"></div>
-
-    <!-- Photo Modal: Update to include a description box beside the image -->
-    <div id="photo-modal">
-        <div id="modal-content">
-            <img id="modal-img" src="" alt="Room Preview">
-            <div id="modal-desc"></div>
-        </div>
+    <!-- History Cardview Wrapper -->
+    <div class="history-cardview-wrapper" id="history-cardview-wrapper">
+        <!-- Cards will be rendered here by JS -->
     </div>
 
+    <script src="function-hamburger.js"></script>
     <script src="function-logout.js"></script>
-    <script src="nav-rooms.js"></script>
+    <script src="nav-history.js"></script>
 </body>
 </html>

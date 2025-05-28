@@ -1,41 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Reservation</title>
+    <title> Login and Signup</title>
     <link rel="stylesheet" href="login-and-signup.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+    <div class="container">
 
-    <div class="form-structor">
-    <div class="signup">
-        <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
-        <div class="form-holder">
-            
-                <input type="text" class="input" placeholder="Firstname" />
-                <input type="text" class="input" placeholder="Lastname" />
-            <input type="email" class="input" placeholder="Email" />
-            <input type="password" class="input" placeholder="Password" />
-            <input type="password" class="input" placeholder="Confirm Password" />
-        </div>
-        <button class="submit-btn">Sign up</button>
-    </div>
-    <div class="login slide-up">
-        <div class="center">
-            <h2 class="form-title" id="login"><span>or</span>Log in</h2>
-            <div class="form-holder">
-                <input type="email" class="input" placeholder="Email" />
-                <input type="password" class="input" placeholder="Password" />
+        <!-- Hidden Checkbox -->
+        <input type="checkbox" id="flip">
+
+        <!-- Picture Cover -->
+        <div class="cover">
+
+            <!-- Front Picture (Login) -->
+            <div class="front">
+                <img src="Photos/nu-logo-revamp.png" alt="NU Logo">
             </div>
-            <button class="submit-btn">Log in</button>
+
+            <!-- Back Picture (Logout) -->
+            <div class="back">
+                <img class="backImg" src="Photos/nu-logo-revamp.png" alt="NU Logo">
+            </div>
+        </div>
+
+        <!-- Text Fields -->
+        <div class="forms">
+            <div class="form-content">
+
+            <!-- Login Title -->
+            <div class="login-form">
+                <div class="title">Login</div>
+
+            <form action="#">
+                <div class="input-boxes">
+                    <!-- Email -->
+                    <div class="input-box">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" placeholder="Enter your email" required>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-box">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <!-- Forgot Password -->
+                    <div class="text"><a href="#">Forgot password?</a></div>
+
+                    <!-- Submit Button -->
+                    <div class="button input-box">
+                        <input type="submit" value="Sumbit">
+                    </div>
+
+                    <!-- Sign Up link (button)-->
+                    <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+                </div>
+            </form>
+        </div>
+
+        
+            <div class="signup-form">
+
+                <!-- Signup Title -->
+                <div class="title">Signup</div>
+
+                <form action="#">
+
+                    <!-- Textfieldds -->
+                    <div class="input-boxes">
+
+                        <!-- First Name -->
+                        <div class="input-box">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Enter your firstname" required>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="input-box">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Enter your lastname" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-box">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" placeholder="Enter your email" required>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Enter your password" required>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Confirm password" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="button input-box">
+                            <input type="submit" value="Submit">
+                        </div>
+
+                        <!-- Login Link(Button) -->
+                        <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+                    </div>
+            </form>
+        </div>
+
+        </div>
         </div>
     </div>
 
-    <script src="login-and-signup-up-down.js"></script>
+    <!-- Javascript -->
     <script src="login.js"></script>
-</div>
-
 </body>
 </html>

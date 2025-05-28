@@ -3,31 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Account</title>
+
+    <link rel="icon" type="image/x-icon" href="Photos/logo-account.png">
     <link rel="stylesheet" href="nav-account.css">
 </head>
 <body>
 
-    <!-- Navigation bar -->
-    <nav>
-      <div class="nav-container">
-          <!-- Centered navigation links -->
-          <ul>
-              <li><a href="nav-rooms.html">Rooms</a></li>
-              <li><a href="nav-reservation.html">Reservation</a></li>
-              <li><a href="nav-account.html">Account</a></li>
-          </ul>
-          <!-- User dropdown logout -->
-          <div class="user-dropdown-wrapper">
-              <div id="user-dropdown">
-                  Hi, User
-                  <div id="logout-menu">
-                      <button onclick="logoutUser()">Logout</button>
-                  </div>
-              </div>
-          </div>
-      </div>
+    <!-- Desktop Navbar -->
+    <nav class="desktop-navbar">
+    
+    <!-- Clicable Navigation -->
+    <ul>
+        <li><a href="nav-home.html">Home</a></li>
+        <li><a href="nav-rooms.html">Rooms</a></li>
+        <li><a href="nav-reservation.html">Reservation</a></li>
+        <li><a href="nav-account.html">Account</a></li>
+        <li><a href="nav-history.html">History</a></li>
+    </ul>
+
+    <!-- User drowdown -->
+    <!-- Logout -->
+    <div class="user-dropdown-wrapper">
+        <div id="user-dropdown">
+            Hi, User
+
+            <div id="logout-menu">
+                <button onclick="logoutUser()">Logout</button>
+            </div>
+
+        </div>
+    </div>
     </nav>
+
+    <!-- Hamburger Navigation Start -->
+    <div class="hamburger-menu">
+
+    <input id="menu__toggle" type="checkbox" />
+    
+    <label class="menu__btn" for="menu__toggle">
+        <span></span>
+    </label>
+
+        <ul class="menu__box">
+            <li><a class="menu__item" href="nav-home.html">Home</a></li>
+            <li><a class="menu__item" href="nav-rooms.html">Rooms</a></li>
+            <li><a class="menu__item" href="nav-reservation.html">Reservation</a></li>
+            <li><a class="menu__item" href="nav-account.html">Account</a></li>
+            <li><a class="menu__item" href="nav-history.html">History</a></li>
+            <li><a class="menu__item" href="index.html">Logout</a></li>
+        </ul>
+    </div>
+    <!-- Hamburger Navigation End -->
 
     <!-- Header -->
     <div class="header-center">
@@ -36,11 +64,20 @@
     
     <!-- Textfields -->
     <div class="account-main">
+
         <!-- Photo and name -->
         <div class="account-photo-col">
-            <img src="photos/sample_account_photo.png" alt="Account Photo">
+            <form id="photo-upload-form" enctype="multipart/form-data">
+                <label for="account-photo-input" style="cursor:pointer;">
+                    <img id="account-photo-preview" src="photos/sample_account_photo.png" alt="Account Photo">
+                </label>
+                <span class="photo-hover-label">Click here to add your photo</span>
+                <input type="file" id="account-photo-input" name="account-photo" accept="image/*" style="display:none;">
+            </form>
+            
             <p id="person-photo">Bautista, Zeus Angelo</p>
         </div>
+
         <!-- Account Details -->
         <form class="account-form">
             <div class="account-form-row">
@@ -78,5 +115,17 @@
     </div>
 
     <script src="function-logout.js"></script>
+    <script>
+document.getElementById('account-photo-input').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('account-photo-preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 </body>
 </html>

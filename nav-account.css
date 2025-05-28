@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Place this after your @import line, before any other CSS */
+body, input, button, select, textarea, label, nav, .desktop-navbar, .hamburger-menu, .account-main, .account-form, .account-photo-col, .submit-row, .header-center, .account-form-row, .account-form label, .account-form input, .account-form select, .account-form textarea {
+    font-family: 'Inter', Arial, Helvetica, sans-serif !important;
+}
+
+/* remove scrollbar */
+/* Firefox */
+html, body {
+    margin: 0;
+    padding-top: 60px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* remove scrollbar */
+/* chronium */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
 /* Navbar styles */
 nav {
     position: fixed;
@@ -5,7 +29,6 @@ nav {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     box-sizing: border-box;
     height: 60px;
@@ -49,6 +72,7 @@ nav ul li a {
 }
 
 #user-dropdown {
+    color: #fff;
     cursor: pointer;
     padding: 8px 18px;
     border-radius: 6px;
@@ -82,7 +106,9 @@ nav ul li a {
 /* Add space so content is not hidden under navbar */
 body {
     margin: 0;
-    padding-top: 60px; /* Match nav height */
+    padding-top: 60px;
+    background: linear-gradient(180deg,rgba(19, 26, 83, 1) 40%, rgba(42, 58, 185, 1) 85%);
+    min-height: 100vh;
 }
 
 /* Header styles */
@@ -90,53 +116,321 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    margin-top: -48px;
+    margin-bottom: -16px;
+    font-size: 2rem; /* Change this value as needed */
 }
 
+/* Reusable just tweak some of it */
 /* Account page layout */
 .account-main {
     display: flex;
+    flex-direction: row;
+    gap: 40px;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 20px;
+    margin: 40px auto 0 auto;
+    max-width: 700px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    border-radius: 4%;
 }
 
 .account-photo-col {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 40px;
+    margin-top: 70px;
+    margin-left: 20px;
+    margin-right: -20px;
+    min-width: 180px;
+    margin-bottom: 0;
+    position: relative;
+}
+
+/* Reset margins for mobile view */
+@media (max-width: 700px) {
+    .account-photo-col {
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 .account-photo-col img {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border: 2px solid #eee;
+    border-radius: 3%;
+}
+
+.account-photo-col .photo-hover-label {
+    display: none;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: rgba(31,38,95,0.95);
+    color: #fff;
+    padding: 7px 18px;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.account-photo-col label:hover + .photo-hover-label,
+.account-photo-col label:focus + .photo-hover-label,
+.account-photo-col img:hover ~ .photo-hover-label {
+    display: block;
 }
 
 #person-photo {
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
     margin: 0;
 }
 
+/* Account form */
 .account-form {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
+    padding: 30px;
 }
 
 .account-form-row {
     display: flex;
-    gap: 20px;
+    gap: 8px;
 }
 
 .account-form-row > div {
     flex: 1;
 }
 
-.account-form input[type="text"],
-.account-form input[type="email"],
-.account-form input[type="password"] {
+.account-form label {
+    margin-top: 8px;   /* Add space above the label */
+    margin-bottom: -16px; /* Space below the label (already present) */
+    display: block;
+}
+
+.account-form input {
     width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .submit-row {
-    text-align: center;
+    margin-top: 10px;
+    text-align: right;
 }
+
+/* Reusable just tweak some of it */
+.submit-row button {
+    padding: 8px 22px;
+    border-radius: 6px;
+    background: #1F265F;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+    display: block;
+    margin: 0 auto;
+}
+
+.submit-row button:hover {
+    background: #FFD41C;
+}
+
+/* Responsive styles for account page */
+@media (max-width: 700px) {
+    .account-main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+        padding: 16px;
+    }
+    .account-photo-col {
+        align-items: center;   /* Center photo on mobile */
+        justify-content: flex-start;
+        order: -1;
+        margin-bottom: 0;
+    }
+    .account-photo-col img {
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+    .account-form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .submit-row {
+        text-align: center;
+    }
+}
+
+
+/* Reusable responsive bar */
+/* --- Desktop Navbar Styles --- */
+.desktop-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.desktop-navbar ul {
+    display: flex;
+    gap: 70px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-navbar li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.2s;
+    font-size: 20px;
+}
+
+.desktop-navbar li a:hover {
+    color: #FFD41C;
+}
+
+.desktop-navbar .user-dropdown-wrapper {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* --- Hamburger Menu Only --- */
+.hamburger-menu #menu__toggle {
+    opacity: 0;
+    position: absolute;
+}
+
+.hamburger-menu #menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg);
+}
+.hamburger-menu #menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0deg);
+}
+.hamburger-menu #menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+.hamburger-menu #menu__toggle:checked ~ .menu__box {
+    left: 0 !important;
+}
+
+.hamburger-menu .menu__btn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger-menu .menu__btn > span,
+.hamburger-menu .menu__btn > span::before,
+.hamburger-menu .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+    transition-duration: .25s;
+}
+
+.hamburger-menu .menu__btn > span::before {
+    content: '';
+    top: -8px;
+}
+.hamburger-menu .menu__btn > span::after {
+    content: '';
+    top: 8px;
+}
+
+.hamburger-menu .menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: #ECEFF1;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    transition-duration: .25s;
+    z-index: 1099;
+}
+
+.hamburger-menu .menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .25s;
+}
+
+.hamburger-menu .menu__item:hover {
+    background-color: #CFD8DC;
+}
+
+/* --- Responsive Visibility --- */
+/* usable in other CSS */
+@media (min-width: 900px) {
+.desktop-navbar {
+    display: flex !important;
+}
+
+    .hamburger-menu {
+        display: none !important;
+    }
+}
+
+@media (max-width: 899px) {
+    .desktop-navbar {
+        display: none !important;
+    }
+    .hamburger-menu {
+        display: block !important;
+    }
+}
+
+/* Disable scrolling if all content fits in the viewport (web/desktop view) */
+@media (min-width: 900px) {
+    html, body {
+        overflow: hidden;
+    }
+}
+/* End reusable responsive visibility */

@@ -34,6 +34,7 @@ nav {
     box-sizing: border-box;
     height: 60px;
     line-height: 60px;
+    overflow: visible; /* Allow content to be visible, no scroll */
 }
 
 /* Nav container for centering and positioning */
@@ -45,6 +46,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible; /* Allow content to be visible, no scroll */
 }
 
 /* Center navigation links */
@@ -63,6 +65,7 @@ nav ul li a {
     text-decoration: none;
     color: inherit;
 }
+
 
 /* User dropdown on the right */
 .user-dropdown-wrapper {
@@ -109,107 +112,24 @@ body {
     padding-top: 60px; /* Match nav height */
 }
 
-/* Header styles */
-.header-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Hide scrollbar but allow vertical scrolling */
+html, body {
+    margin: 0;
+    padding-top: 60px;
+    overflow-y: scroll;
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE and old Edge */
 }
 
-/* Form and chooser styles */
-form {
-    max-width: 900px;
-    margin: auto;
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0px;                  /* Chromium browsers like Edge */
+    background: transparent;
 }
 
-.chooser-table {
-    display: flex;
-    justify-content: center;
-}
-
-.form-names,
-.form-row,
-.form-date-time {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.form-row {
-    margin-top: 20px;
-}
-
-.form-date-time {
-    margin-top: 20px;
-}
-
-.form-col {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-/* Reusable just tweak some of it */
-/* Account page layout */
-.account-main {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto 0 auto;
-    max-width: 700px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-/* Reusable just tweak some of it */
-.submit-row button {
-    padding: 8px 22px;
-    border-radius: 6px;
-    background: #1F265F;
-    color: #fff;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s;
-    display: block;
-    margin: 0 auto;
-}
-
-.submit-row button:hover {
-    background: #FFD41C;
-}
-
-/* fields */
-.account-form input {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-/* Add this to style all textfields like account-form input */
-input[type="text"],
-input[type="date"],
-input[type="time"],
-select {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
+/* Header and chooser styles */
+hr {
+    margin-top: 0;
 }
 
 /* Reusable responsive bar */
@@ -352,36 +272,6 @@ select {
     }
     .hamburger-menu {
         display: block !important;
-    }
-}
-
-/* Responsive styles for reservation form */
-@media (max-width: 700px) {
-    .account-main {
-        padding: 10px;
-        gap: 20px;
-    }
-    .form-names,
-    .form-row,
-    .form-date-time {
-        flex-direction: column;
-        gap: 0;
-        align-items: stretch;
-    }
-    .form-col {
-        width: 100%;
-    }
-    form {
-        padding: 0 5px;
-    }
-    .submit-row {
-        text-align: center;
-    }
-    input[type="text"],
-    input[type="date"],
-    input[type="time"],
-    select {
-        font-size: 0.98rem;
     }
 }
 /* End reusable responsive visibility */

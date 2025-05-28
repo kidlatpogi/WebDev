@@ -48,8 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let row;
         rooms.forEach(function(roomNum, idx) {
+            // Use 1 per row on mobile, 5 per row otherwise
+            var isMobile = window.innerWidth <= 700;
+            var perRow = isMobile ? 1 : 5;
 
-            if (idx % 5 === 0) {
+            if (idx % perRow === 0) {
                 row = document.createElement("div");
                 row.style.display = "flex";
                 row.style.justifyContent = "center";
@@ -70,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             var img = document.createElement("img");
-            img.src = "Photos/sample_image.png";
+            img.src = "photos/sample_image.png";
             img.alt = "Room " + roomNum;
             img.style.width = "200px";
             img.style.height = "200px";
@@ -114,4 +117,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
     }
+
+    // Handle window resize
+    let lastIsMobile = window.innerWidth <= 700;
+    window.addEventListener("resize", function() {
+        const isMobile = window.innerWidth <= 700;
+        if (isMobile !== lastIsMobile) {
+            lastIsMobile = isMobile;
+            renderRooms();
+        }
+    });
 });
