@@ -1,61 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Home</title>
-
-    <link rel="icon" type="image/x-icon" href="Photos/logo-home.png">
-    <link rel="stylesheet" href="nav-home.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NU Dasma Room Reservation</title>
+  <link rel="icon" type="image/x-icon" href="../img-src/nu-logo-caption.png" />
+  <link rel="stylesheet" href="../css/nav-home.css" />
 </head>
 <body>
 
-    <!-- Desktop Navbar -->
-    <nav class="desktop-navbar">
-    
-    <!-- Clicable Navigation -->
+  <!-- Desktop Navbar -->
+  <nav class="desktop-navbar">
     <ul>
-        <li><a href="nav-home.html">Home</a></li>
-        <li><a href="nav-rooms.html">Rooms</a></li>
-        <li><a href="nav-reservation.html">Reservation</a></li>
-        <li><a href="nav-account.html">Account</a></li>
-        <li><a href="nav-history.html">History</a></li>
+      <li><a href="nav-home.html">Rooms</a></li>
+      <li><a href="nav-reservation.html">Reservation</a></li>
+      <li><a href="nav-account.html">Account</a></li>
+      <li><a href="nav-history.html">History</a></li>
     </ul>
-
-    <!-- User drowdown -->
-    <!-- Logout -->
     <div class="user-dropdown-wrapper">
-        <div id="user-dropdown">
-            Hi, User
-
-            <div id="logout-menu">
-                <button onclick="logoutUser()">Logout</button>
-            </div>
-
+      <div id="user-dropdown">
+        Hi, User
+        <div id="logout-menu">
+          <button onclick="logoutUser()">Logout</button>
         </div>
+      </div>
     </div>
-    </nav>
+  </nav>
 
-    <!-- Hamburger Navigation Start -->
-    <div class="hamburger-menu">
-
+  <!-- Hamburger Nav -->
+  <div class="hamburger-menu">
     <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle"><span></span></label>
+    <ul class="menu__box">
+      <li><a class="menu__item" href="nav-home.html">Rooms</a></li>
+      <li><a class="menu__item" href="nav-reservation.html">Reservation</a></li>
+      <li><a class="menu__item" href="nav-account.html">Account</a></li>
+      <li><a class="menu__item" href="nav-history.html">History</a></li>
+      <li><a class="menu__item" href="index.html">Logout</a></li>
+    </ul>
+  </div>
 
-    <label class="menu__btn" for="menu__toggle">
-        <span></span>
-    </label>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="../img-src/nu-logo-default.png" alt="NU Logo" class="hero-logo" />
+    <h1>National University Dasmariñas<br>Room Reservation System</h1>
+    <p>
+      THE NU DASMA ROOM RESERVATION SYSTEM, A WEB PROJECT DEDICATED FOR STUDENTS,
+      PROFESSORS, AND THE LIKE TO UTILIZE THE NATIONALIAN ENVIRONMENT FOR CONFERENCES,
+      CLASSROOMS, STUDY SPACES ETC. THIS HALF-BAKED PLATFORM ARE FRESHLY AND HONORABLY
+      DESIGNED BY YOURS TRULY, THE SPECIAL FORCES.
+    </p>
 
-        <ul class="menu__box">
-            <li><a class="menu__item" href="nav-home.html">Home</a></li>
-            <li><a class="menu__item" href="nav-rooms.html">Rooms</a></li>
-            <li><a class="menu__item" href="nav-reservation.html">Reservation</a></li>
-            <li><a class="menu__item" href="nav-account.html">Account</a></li>
-            <li><a class="menu__item" href="nav-history.html">History</a></li>
-            <li><a class="menu__item" href="index.html">Logout</a></li>
-        </ul>
+    <div class="image-gallery">
+      <img src="../img-src/room1.png" alt="Room 1" />
+      <img src="../img-src/room2.png" alt="Room 2" />
+      <img src="../img-src/room3.png" alt="Room 3" />
+      <img src="../img-src/room4.png" alt="Room 4" />
     </div>
-    <!-- Hamburger Navigation End -->
+  </section>
+
+  <!-- Footer -->
+<footer>
+  <div class="footer-container">
     
+    <!-- Left: Logo -->
+    <div class="footer-left">
+      <img src="../img-src/nu-logo-mono.png" alt="NU Logo" />
+    </div>
+
+    <!-- Center: Address and Copyright -->
+    <div class="footer-center">
+      <p>
+        © 2024 National University. All rights reserved.<br>
+        Sampaloc 1 Bridge, SM Dasmariñas, Governor's Drive, Dasmariñas, Cavite 4114
+      </p>
+    </div>
+
+    <!-- Right: Icons and Links -->
+    <div class="footer-right">
+      <div class="footer-icons">
+        <img src="../img-src/facebook.png" alt="Facebook" />
+        <img src="../img-src/instagram.png" alt="Instagram" />
+        <img src="../img-src/twitter.png" alt="Twitter" />
+        <img src="../img-src/youtube.png" alt="YouTube" />
+      </div>
+      <div class="footer-links">
+        <a href="#">Support</a> | <a href="#">About Us</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
 </body>
 </html>
