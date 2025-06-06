@@ -1,48 +1,46 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const floorSelect = document.getElementById("floor");
-    const roomSelect = document.getElementById("room");
-    const roomTypeSelect = document.getElementById("roomType"); // make sure ID matches exactly
+  const floorSelect = document.getElementById("floor");
+  const roomTypeSelect = document.getElementById("roomType");
+  const roomSelect = document.getElementById("room");
 
-    function populateRooms(start, end, floorPrefix, skip = []) {
-        roomSelect.innerHTML = ""; // Clear existing options
-        for (let i = start; i <= end; i++) {
-            if (skip.includes(i)) continue; // skip these room numbers
-            const roomNum = `${floorPrefix}${i.toString().padStart(2, "0")}`;
-            const option = document.createElement("option");
-            option.value = `r${roomNum}`;
-            option.textContent = `Room ${roomNum}`;
-            roomSelect.appendChild(option);
-        }
+  function fetchRooms() {
+    const floor = floorSelect.value;      // e.g. "4th Floor"
+    const type = roomTypeSelect.value;    // e.g. "Lecture Room"
+
+    if (!floor || !type) {
+      roomSelect.innerHTML = '<option value="">Select a floor and room type first</option>';
+      return;
     }
 
-    function updateRooms() {
-        const floor = floorSelect.value;
-        const type = roomTypeSelect.value;
+    // Fetch rooms from PHP API with query params floor and type
+    fetch(`get_rooms.php?floor=${encodeURIComponent(floor)}&type=${encodeURIComponent(type)}`)
+      .then(response => response.json())
+      .then(data => {
+        roomSelect.innerHTML = ""; // Clear old options
 
-        if (floor === "4th") {
-            if (type === "Lecture") {
-                // 4th floor Lecture: 401-435 excluding 415-420
-                populateRooms(1, 35, "4", [15,16,17,18,19,20]);
-            } else if (type === "Laboratory") {
-                // 4th floor Lab: 415-420
-                populateRooms(15, 20, "4");
-            }
-        } else if (floor === "5th") {
-            if (type === "Laboratory") {
-                // 5th floor Lab: 501-510
-                populateRooms(1, 10, "5");
-            } else if (type === "Lecture") {
-                // 5th floor Lecture: 511-534
-                populateRooms(11, 34, "5");
-            }
-        } else {
-            roomSelect.innerHTML = "";
+        if (data.length === 0) {
+          roomSelect.innerHTML = '<option value="">No rooms available</option>';
+          return;
         }
-    }
 
-    floorSelect.addEventListener("change", updateRooms);
-    roomTypeSelect.addEventListener("change", updateRooms);
+        // Populate room dropdown with returned rooms (only room_id)
+        data.forEach(room => {
+          const option = document.createElement("option");
+          option.value = room.room_id;
+          option.textContent = `Room ${room.room_id}`;
+          roomSelect.appendChild(option);
+        });
+      })
+      .catch(err => {
+        console.error("Error fetching rooms:", err);
+        roomSelect.innerHTML = '<option value="">Error loading rooms</option>';
+      });
+  }
 
-    // Initialize default rooms on page load
-    updateRooms();
+  // Listen for changes on floor and room type selects
+  floorSelect.addEventListener("change", fetchRooms);
+  roomTypeSelect.addEventListener("change", fetchRooms);
+
+  // Initial fetch to populate rooms based on default selections
+  fetchRooms();
 });
