@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Rowdies', sans-serif;
+  background-color: #f4f4f4;
+  color: #000;
+}
+
+/* Header styles */
+.header {
+  background-color: #1F265F;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 40px;
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.logo h2 {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Main layout */
+.main {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Search */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  font-size: 14px;
+  font-family: 'Rowdies', sans-serif;
+  background: transparent;
+}
+
+.search-box button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-box img {
+  height: 26px;
+  width: 26px;
+}
+
+/* Cards */
+.client-card {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.client-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.client-card p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
