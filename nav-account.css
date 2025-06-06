@@ -27,12 +27,17 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    max-width: 1200px;
+    margin: 0 auto;
     z-index: 1000;
+    background: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     box-sizing: border-box;
     height: 60px;
     line-height: 60px;
+    overflow: visible;
+    border-radius: 40px;
 }
 
 /* Nav container for centering and positioning */
@@ -63,6 +68,18 @@ nav ul li a {
     color: inherit;
 }
 
+/* Logo */
+.logo-container {
+    position: absolute;
+    left: 30px;
+    top: 5%;
+}
+
+.nu-logo {
+    width: 150px;
+    height: auto;
+}
+
 /* User dropdown on the right */
 .user-dropdown-wrapper {
     position: absolute;
@@ -72,7 +89,7 @@ nav ul li a {
 }
 
 #user-dropdown {
-    color: #fff;
+    color: black;
     cursor: pointer;
     padding: 8px 18px;
     border-radius: 6px;
@@ -82,13 +99,17 @@ nav ul li a {
     box-shadow: none;
 }
 
+#user-dropdown:hover {
+    color: #FFD41C;
+}
+
 #logout-menu {
     display: none;
     position: absolute;
     right: 0;
     top: 110%;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: white;
+    border: 1px solid black;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     min-width: 100px;
@@ -103,12 +124,21 @@ nav ul li a {
     cursor: pointer;
 }
 
+#logout-menu button:hover {
+    color: red;
+}
+
 /* Add space so content is not hidden under navbar */
 body {
     margin: 0;
     padding-top: 60px;
     background: linear-gradient(180deg,rgba(19, 26, 83, 1) 40%, rgba(42, 58, 185, 1) 85%);
     min-height: 100vh;
+}
+
+/* Content holder (square) */
+.content-holder{
+    color: white;
 }
 
 /* Header styles */
@@ -120,6 +150,15 @@ body {
     margin-top: -48px;
     margin-bottom: -16px;
     font-size: 2rem; /* Change this value as needed */
+}
+
+/* transitions */
+@view-transition {
+    navigation: auto;
+}
+
+nav a {
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 /* Reusable just tweak some of it */
@@ -216,8 +255,8 @@ body {
 }
 
 .account-form label {
-    margin-top: 8px;   /* Add space above the label */
-    margin-bottom: -16px; /* Space below the label (already present) */
+    margin-top: 8px;
+    margin-bottom: -16px;
     display: block;
 }
 
@@ -283,7 +322,6 @@ body {
     }
 }
 
-
 /* Reusable responsive bar */
 /* --- Desktop Navbar Styles --- */
 .desktop-navbar {
@@ -293,11 +331,12 @@ body {
     height: 60px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     position: fixed;
-    top: 0;
+    top: 15px;
     left: 0;
     width: 100%;
     z-index: 1000;
 }
+
 
 .desktop-navbar ul {
     display: flex;
@@ -309,13 +348,22 @@ body {
 
 .desktop-navbar li a {
     text-decoration: none;
-    color: #fff;
-    transition: color 0.2s;
+    color: black;
     font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
 }
 
 .desktop-navbar li a:hover {
     color: #FFD41C;
+    transform: scale(1.1);
+    text-decoration: underline;
+}
+
+.desktop-navbar li a.active {
+    color: #FFD41C;
+    text-decoration: underline;
+    transform: scale(1.1);
 }
 
 .desktop-navbar .user-dropdown-wrapper {
@@ -363,7 +411,7 @@ body {
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #616161;
+    background-color: #FFD41C;
     transition-duration: .25s;
 }
 
@@ -386,7 +434,7 @@ body {
     margin: 0;
     padding: 80px 0;
     list-style: none;
-    background-color: #ECEFF1;
+    background-color: white;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
     transition-duration: .25s;
     z-index: 1099;
@@ -395,7 +443,7 @@ body {
 .hamburger-menu .menu__item {
     display: block;
     padding: 12px 24px;
-    color: #333;
+    color: black;
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
@@ -403,7 +451,7 @@ body {
 }
 
 .hamburger-menu .menu__item:hover {
-    background-color: #CFD8DC;
+    background-color: #FFD41C;
 }
 
 /* --- Responsive Visibility --- */

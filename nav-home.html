@@ -4,28 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NU Dasma Room Reservation</title>
-  <link rel="icon" type="image/x-icon" href="../img-src/nu-logo-caption.png" />
-  <link rel="stylesheet" href="../css/nav-home.css" />
+  
+  <link rel="stylesheet" href="nav-home.css" />
 </head>
 <body>
 
-  <!-- Desktop Navbar -->
-  <nav class="desktop-navbar">
-    <ul>
-      <li><a href="nav-home.html">Rooms</a></li>
-      <li><a href="nav-reservation.html">Reservation</a></li>
-      <li><a href="nav-account.html">Account</a></li>
-      <li><a href="nav-history.html">History</a></li>
-    </ul>
-    <div class="user-dropdown-wrapper">
-      <div id="user-dropdown">
-        Hi, User
-        <div id="logout-menu">
-          <button onclick="logoutUser()">Logout</button>
-        </div>
-      </div>
+  
+    <!-- Desktop Navbar -->
+    <nav class="desktop-navbar">
+
+    <!--NU Logo -->
+    <div class="logo-container">
+        <a href="nav-home.html"><img src="Photos/nu-logo-label.png" class="nu-logo"></a>
     </div>
-  </nav>
+    
+    <!-- Clicable Navigation -->
+    <ul>
+        <li><a href="nav-home.html">Home</a></li>
+        <li><a href="nav-rooms.html">Rooms</a></li>
+        <li><a href="nav-reservation.html">Reservation</a></li>
+        <li><a href="nav-account.html">Account</a></li>
+        <li><a href="nav-history.html">History</a></li>
+    </ul>
+
+    <!-- User drowdown -->
+    <!-- Logout -->
+    <div class="user-dropdown-wrapper">
+        <div id="user-dropdown">
+            Hi, User
+
+            <div id="logout-menu">
+                <button onclick="logoutUser()">Logout</button>
+            </div>
+
+        </div>
+    </div>
+    </nav>
 
   <!-- Hamburger Nav -->
   <div class="hamburger-menu">
@@ -42,20 +56,20 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <img src="../img-src/nu-logo-default.png" alt="NU Logo" class="hero-logo" />
-    <h1>National University Dasmariñas<br>Room Reservation System</h1>
+    <img src="Photos/nu-logo.png" alt="NU Logo" class="hero-logo" />
+    <h1>"Room Reservation System"</h1>
     <p>
-      THE NU DASMA ROOM RESERVATION SYSTEM, A WEB PROJECT DEDICATED FOR STUDENTS,
-      PROFESSORS, AND THE LIKE TO UTILIZE THE NATIONALIAN ENVIRONMENT FOR CONFERENCES,
-      CLASSROOMS, STUDY SPACES ETC. THIS HALF-BAKED PLATFORM ARE FRESHLY AND HONORABLY
-      DESIGNED BY YOURS TRULY, THE SPECIAL FORCES.
+      The NU Dasma Room Reservation System, a web project dedicated for students,
+      professors, and the like to utilize the Nationalian environment for conferences,
+      classrooms, study spaces etc. This half-baked platform are freshly and honorably
+      designed by yours truly, the Special Forces.
     </p>
 
     <div class="image-gallery">
-      <img src="../img-src/room1.png" alt="Room 1" />
-      <img src="../img-src/room2.png" alt="Room 2" />
-      <img src="../img-src/room3.png" alt="Room 3" />
-      <img src="../img-src/room4.png" alt="Room 4" />
+      <img src="Photos/room1.png" alt="Room 1" />
+      <img src="Photos/room2.png" alt="Room 2" />
+      <img src="Photos/room3.png" alt="Room 3" />
+      <img src="Photos/room4.png" alt="Room 4" />
     </div>
   </section>
 
@@ -65,7 +79,7 @@
     
     <!-- Left: Logo -->
     <div class="footer-left">
-      <img src="../img-src/nu-logo-mono.png" alt="NU Logo" />
+      <img src="Photos/nu-logo-mono.png" alt="NU Logo" />
     </div>
 
     <!-- Center: Address and Copyright -->
@@ -79,10 +93,10 @@
     <!-- Right: Icons and Links -->
     <div class="footer-right">
       <div class="footer-icons">
-        <img src="../img-src/facebook.png" alt="Facebook" />
-        <img src="../img-src/instagram.png" alt="Instagram" />
-        <img src="../img-src/twitter.png" alt="Twitter" />
-        <img src="../img-src/youtube.png" alt="YouTube" />
+        <img src="Photos/facebook.png" alt="Facebook" />
+        <img src="Photos/instagram.png" alt="Instagram" />
+        <img src="Photos/twitter.png" alt="Twitter" />
+        <img src="Photos/youtube.png" alt="YouTube" />
       </div>
       <div class="footer-links">
         <a href="#">Support</a> | <a href="#">About Us</a>
@@ -92,6 +106,8 @@
   </div>
 </footer>
 
-
+  <script src="function-logout.js"></script>
+  <script src="function-active-navbar.js"></script>
+  
 </body>
 </html>

@@ -51,19 +51,22 @@ function renderHistoryCards(status) {
     filtered.forEach(item => {
         const card = document.createElement("div");
         card.className = "history-card";
-        // Add status class for color
+
         let statusClass = "";
         if (item.status === "Completed") statusClass = "completed";
         if (item.status === "Cancelled") statusClass = "cancelled";
+
         card.innerHTML = `
-            <p class="history-status ${statusClass}">${item.status}...</p>
+            <p class="history-status ${statusClass}">${item.status}</p>
             <h1 class="history-title">${item.room} &nbsp;|&nbsp; ${item.type}</h1>
             <p class="history-time">Time: ${item.time}</p>
             <p class="history-date">Reserved on: ${item.date}</p>
+            ${item.status === "Ongoing" ? `<button class="cancel-btn">Cancel</button>` : ""}
         `;
         wrapper.appendChild(card);
     });
 }
+
 
 document.addEventListener("DOMContentLoaded", function() {
     // Initial render

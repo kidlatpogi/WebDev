@@ -6,13 +6,17 @@
     
     <title>Account</title>
 
-    <link rel="icon" type="image/x-icon" href="Photos/logo-account.png">
     <link rel="stylesheet" href="nav-account.css">
 </head>
 <body>
 
     <!-- Desktop Navbar -->
     <nav class="desktop-navbar">
+
+    <!--NU Logo -->
+    <div class="logo-container">
+        <a href="nav-home.html"><img src="Photos/nu-logo-label-blue.png" class="nu-logo"></a>
+    </div>
     
     <!-- Clicable Navigation -->
     <ul>
@@ -115,17 +119,7 @@
     </div>
 
     <script src="function-logout.js"></script>
-    <script>
-document.getElementById('account-photo-input').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('account-photo-preview').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
-</script>
+    <script src="function-account-photo-preview.js"></script>
+    <script src="function-active-navbar.js"></script>
 </body>
 </html>

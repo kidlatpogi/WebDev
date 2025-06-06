@@ -9,14 +9,17 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    max-width: 1200px;
+    margin: 0 auto;
     z-index: 1000;
-    background: #fff;
+    background: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     box-sizing: border-box;
     height: 60px;
     line-height: 60px;
-    overflow: visible; /* Allow content to be visible, no scroll */
+    overflow: visible;
+    border-radius: 40px;
 }
 
 /* Nav container for centering and positioning */
@@ -28,7 +31,6 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible; /* Allow content to be visible, no scroll */
 }
 
 /* Center navigation links */
@@ -48,6 +50,17 @@ nav ul li a {
     color: inherit;
 }
 
+/* Logo */
+.logo-container {
+    position: absolute;
+    left: 30px;
+    top: 5%;
+}
+
+.nu-logo {
+    width: 150px;
+    height: auto;
+}
 
 /* User dropdown on the right */
 .user-dropdown-wrapper {
@@ -58,6 +71,7 @@ nav ul li a {
 }
 
 #user-dropdown {
+    color: black;
     cursor: pointer;
     padding: 8px 18px;
     border-radius: 6px;
@@ -67,18 +81,26 @@ nav ul li a {
     box-shadow: none;
 }
 
+#user-dropdown:hover {
+    color: #FFD41C;
+}
+
 /* Logout menu */
 #logout-menu {
     display: none;
     position: absolute;
     right: 0;
     top: 110%;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: white;
+    border: 1px solid black;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     min-width: 100px;
     z-index: 1000;
+}
+
+#logout-menu button:hover {
+    color: red;
 }
 
 #logout-menu button {
@@ -89,9 +111,12 @@ nav ul li a {
     cursor: pointer;
 }
 
+/* Add space so content is not hidden under navbar */
 body {
     margin: 0;
     padding-top: 60px;
+    background: linear-gradient(180deg,rgba(19, 26, 83, 1) 40%, rgba(42, 58, 185, 1) 85%);
+    min-height: 100vh;
 }
 
 /* remove scrollbar */
@@ -117,15 +142,21 @@ hr {
     margin-top: 0;
 }
 
+/* Header styles */
 .header-center {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    margin-top: -48px;
+    margin-bottom: -16px;
+    font-size: 2rem; /* Change this value as needed */
 }
 
 .chooser-table {
     display: flex;
     justify-content: center;
+    color: white;
 }
 
 #room-grid {
@@ -133,6 +164,24 @@ hr {
     margin: 30px auto 0 auto;
     text-align: center;
 }
+
+/* Small squares */
+.room-cell {
+    width: 220px;
+    margin: 0 15px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 12px;
+}
+
+.room-cell:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
 
 /* Image preview */
 #photo-modal {
@@ -143,9 +192,28 @@ hr {
     top: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
+    animation: bounceIn 0.6s ease;
+}
+
+/* bounce in animation */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 #modal-content {
@@ -189,6 +257,16 @@ hr {
     }
 }
 
+/* transitions */
+@view-transition {
+    navigation: auto;
+}
+
+nav a {
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+
 /* Reusable responsive bar */
 /* --- Desktop Navbar Styles --- */
 .desktop-navbar {
@@ -196,14 +274,14 @@ hr {
     justify-content: center;
     align-items: center;
     height: 60px;
-    background: #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     position: fixed;
-    top: 0;
+    top: 15px;
     left: 0;
     width: 100%;
     z-index: 1000;
 }
+
 
 .desktop-navbar ul {
     display: flex;
@@ -215,12 +293,22 @@ hr {
 
 .desktop-navbar li a {
     text-decoration: none;
-    color: #222;
-    transition: color 0.2s;
+    color: black;
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
 }
 
 .desktop-navbar li a:hover {
-    color: #DC052D;
+    color: #FFD41C;
+    transform: scale(1.1);
+    text-decoration: underline;
+}
+
+.desktop-navbar li a.active {
+    color: #FFD41C;
+    text-decoration: underline;
+    transform: scale(1.1);
 }
 
 .desktop-navbar .user-dropdown-wrapper {
@@ -268,7 +356,7 @@ hr {
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #616161;
+    background-color: #FFD41C;
     transition-duration: .25s;
 }
 
@@ -291,7 +379,7 @@ hr {
     margin: 0;
     padding: 80px 0;
     list-style: none;
-    background-color: #ECEFF1;
+    background-color: white;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
     transition-duration: .25s;
     z-index: 1099;
@@ -300,7 +388,7 @@ hr {
 .hamburger-menu .menu__item {
     display: block;
     padding: 12px 24px;
-    color: #333;
+    color: black;
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
@@ -308,7 +396,7 @@ hr {
 }
 
 .hamburger-menu .menu__item:hover {
-    background-color: #CFD8DC;
+    background-color: #FFD41C;
 }
 
 /* --- Responsive Visibility --- */
@@ -330,5 +418,11 @@ hr {
     .hamburger-menu {
         display: block !important;
     }
+    .nu-logo {
+    width: 100px;
+    height: auto;
+    
 }
+}
+
 /* End reusable responsive visibility */

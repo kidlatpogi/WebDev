@@ -217,3 +217,91 @@ body {
     display: none;
   }
 }
+
+/* transition */
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background-color: #252525;
+  transform: translatex(0%);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.5s;
+  will-change: transform;
+}
+
+.a,
+.b,
+.c {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition-property: opacity, visibility;
+  transition-duration: 0.5s;
+  transition-delay: -0.1s;
+  transition-timing-function: ease-in-out;
+  height: 100%;
+}
+
+.ac {
+  margin: auto;
+}
+
+[data-route=c] .c, [data-route=b] .b, [data-route=a] .a {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition: opacity 0.5s ease-in 0.9s;
+}
+
+.disable-hover,
+.disable-hover * {
+  pointer-events: none !important;
+  cursor: none;
+  cursor: wait;
+}
+
+/* transitions */
+@view-transition {
+    navigation: auto;
+}
+
+@keyframes move-out {
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes move-in {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+
+::view-transition-old(root) {
+    animation: 0.8s cubic-bezier(0.87, 0, 0.13, 1) both move-out;
+}
+
+::view-transition-new(root) {
+    animation: 0.8s cubic-bezier(0.87, 0, 0.13, 1) both move-in;
+}
+
+nav a {
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.input-box .toggle-password {
+  display: none;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #1F265F;
+}
