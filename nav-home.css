@@ -400,7 +400,7 @@ nav a {
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #616161;
+    background-color: #FFD41C;
     transition-duration: .25s;
 }
 
@@ -423,7 +423,7 @@ nav a {
     margin: 0;
     padding: 80px 0;
     list-style: none;
-    background-color: #ECEFF1;
+    background-color: white;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
     transition-duration: .25s;
     z-index: 1099;
@@ -432,7 +432,7 @@ nav a {
 .hamburger-menu .menu__item {
     display: block;
     padding: 12px 24px;
-    color: #333;
+    color: black;
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
@@ -440,7 +440,7 @@ nav a {
 }
 
 .hamburger-menu .menu__item:hover {
-    background-color: #CFD8DC;
+    background-color: #FFD41C;
 }
 
 /* --- Responsive Visibility --- */

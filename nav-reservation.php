@@ -6,7 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if empty
+$full_first_name = $_SESSION['first_name'] ?? 'User';
+$user_first_name = explode(' ', trim($full_first_name))[0];
 ?>
 
 <!DOCTYPE html>
@@ -122,13 +123,19 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
                 <label for="date">Date</label>
                 <input type="date" id="date" name="date" required />
             </div>
+
             <div class="form-col">
                 <label for="starttime">Start Time</label>
-                <input type="time" id="starttime" name="starttime" required min="07:00" max="21:00" step="3600" />
+                <select id="starttime" name="starttime" required>
+                    <option value="">Select start time</option>
+                </select>
             </div>
+
             <div class="form-col">
                 <label for="endtime">End Time</label>
-                <input type="time" id="endtime" name="endtime" required min="07:00" max="21:00" step="3600" />
+                <select id="endtime" name="endtime" required>
+                    <option value="">Select end time</option>
+                </select>
             </div>
         </div>
 
@@ -140,9 +147,40 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
 
     </form>
 
-    <script src="function-fetch-userDesc.js"></script>
     <script src="nav-reservation.js"></script>
+    <script src="nav-reservation-time.js"></script>
+    <script src="function-fetch-userDesc.js"></script>
+
+    <script>
+    document.querySelector('form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch('insert_reservation.php', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.text();
+
+            if (result.includes("success")) {
+                alert("Reservation successful!");
+                this.reset();
+                // Optionally redirect:
+                window.location.href = "nav-history.php"; 
+            } else {
+                alert(result);
+            }
+        } catch (error) {
+            alert('Fetch error: ' + error.message);
+        }
+    });
+</script>
+
+
+
     <script src="function-logout.js"></script>
     <script src="function-active-navbar.js"></script>
+
 </body>
 </html>

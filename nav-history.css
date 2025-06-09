@@ -250,6 +250,54 @@ body {
     }
 }
 
+.history-card.no-data {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;  
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+
+/* Cardview wrapper: 2 cards per row in desktop/tablet, 1 card per row on mobile */
+.history-cardview-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+@media (max-width: 700px) {
+    .history-cardview-wrapper {
+        grid-template-columns: 1fr; 
+        gap: 18px;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .history-card {
+        max-width: 400px;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.history-cardview-wrapper {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
 /* transitions */
 @view-transition {
     navigation: auto;
@@ -421,3 +469,73 @@ nav a {
     }
 }
 /* End reusable responsive visibility */
+
+/* Hide the actual radio buttons */
+.radio-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.radio-toolbar input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: white;
+  padding: 10px 24px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  border: 2px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin-right: 16px;
+  color: #222;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) and (min-width: 601px) {
+  .radio-toolbar label {
+    flex: 1 1 45%;
+    min-width: 120px;
+    font-size: 15px;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .radio-toolbar label {
+    display: block;
+    margin-bottom: 12px;
+    margin-right: 0;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+/* Checked styles you already have... */
+.radio-toolbar input[type="radio"]#ongoing:checked + label {
+  background-color: #cce0ff;
+  border-color: #3390ff;
+  color: #003366;
+}
+
+.radio-toolbar input[type="radio"]#completed:checked + label {
+  background-color: #bfffc6;
+  border-color: #3cc96b;
+  color: #064906;
+}
+
+.radio-toolbar input[type="radio"]#cancelled:checked + label {
+  background-color: #ffc8c8;
+  border-color: #ff4d4d;
+  color: #990000;
+}

@@ -8,18 +8,14 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$fname = $_SESSION['first_name'] ?? null;
-$lname = $_SESSION['last_name'] ?? null;
-$email = $_SESSION['email'] ?? null;
+// Get first word only from session first and last names
+$fname = isset($_SESSION['first_name']) ? explode(' ', trim($_SESSION['first_name']))[0] : null;
+$lname = isset($_SESSION['last_name']) ? explode(' ', trim($_SESSION['last_name']))[0] : null;
+$email = $_SESSION['email'] ?? '';
 
-if (!$fname || !$lname) {
-    echo json_encode(['error' => 'User name not found in session']);
+if (!$lname) {
+    echo json_encode(['error' => 'User last name not found in session']);
     exit();
-}
-
-if (!$email) {
-    // Optional: you can still send the response but with a warning or empty email
-    $email = '';
 }
 
 echo json_encode([

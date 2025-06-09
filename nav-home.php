@@ -53,18 +53,25 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
     </div>
     </nav>
 
-  <!-- Hamburger Nav -->
-  <div class="hamburger-menu">
+  <!-- Hamburger Navigation Start -->
+    <div class="hamburger-menu">
+
     <input id="menu__toggle" type="checkbox" />
-    <label class="menu__btn" for="menu__toggle"><span></span></label>
-    <ul class="menu__box">
-      <li><a class="menu__item" href="nav-home.php">Rooms</a></li>
-      <li><a class="menu__item" href="nav-reservation.php">Reservation</a></li>
-      <li><a class="menu__item" href="nav-account.php">Account</a></li>
-      <li><a class="menu__item" href="nav-history.php">History</a></li>
-      <li><a class="menu__item" href="index.php">Logout</a></li>
-    </ul>
-  </div>
+    
+    <label class="menu__btn" for="menu__toggle">
+        <span></span>
+    </label>
+
+        <ul class="menu__box">
+            <li><a class="menu__item" href="nav-home.php">Home</a></li>
+            <li><a class="menu__item" href="nav-rooms.php">Rooms</a></li>
+            <li><a class="menu__item" href="nav-reservation.php">Reservation</a></li>
+            <li><a class="menu__item" href="nav-account.php">Account</a></li>
+            <li><a class="menu__item" href="nav-history.php">History</a></li>
+            <li><a class="menu__item" href="index.html">Logout</a></li>
+        </ul>
+    </div>
+    <!-- Hamburger Navigation End -->
 
   <!-- Hero Section -->
   <section class="hero">

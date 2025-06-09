@@ -13,7 +13,8 @@ if (empty($email) || empty($password)) {
 // Connect to the database
 $conn = new mysqli("localhost", "root", "", "room_reservation");
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo "Database connection failed.";
+    exit();
 }
 
 // Prepare and execute query to check user
@@ -22,16 +23,14 @@ $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Check if user exists
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
 
-    // Verify password
     if (password_verify($password, $row['password'])) {
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['email'] = $email;
 
-        // Fetch first name and last name from USER_DETAILS
+        // Get full name
         $stmt2 = $conn->prepare("SELECT fname, lname FROM USER_DETAILS WHERE user_id = ?");
         $stmt2->bind_param("i", $row['user_id']);
         $stmt2->execute();
@@ -45,10 +44,10 @@ if ($result->num_rows === 1) {
             $_SESSION['first_name'] = 'User';
             $_SESSION['last_name'] = '';
         }
+
         $stmt2->close();
 
-        // Redirect to nav-home.php
-        header("Location: nav-home.php");
+        echo "success"; // Tell JS to redirect
         exit();
     } else {
         echo "Invalid password.";

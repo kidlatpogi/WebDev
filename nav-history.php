@@ -77,9 +77,9 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
     </div>
 
     <table class="chooser-table" cellpadding="5">
-        <tr>
+        <tr class = "radio-toolbar">
             <td>
-                <input type="radio" id="ongoing" name="history-status" value="Ongoing" checked>
+                <input type="radio" id="ongoing" name="history-status" value="Ongoing" checked class="radio-toolbar">
                 <label for="ongoing">Ongoing</label>
             </td>
             <td>
@@ -93,10 +93,16 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
         </tr>
     </table>
 
+    
+
     <!-- History Cardview Wrapper -->
     <div class="history-cardview-wrapper" id="history-cardview-wrapper">
         <!-- Cards will be rendered here by JS -->
     </div>
+
+    <script>
+        const userId = <?php echo json_encode($_SESSION['user_id']); ?>;
+    </script>
 
     <script src="function-logout.js"></script>
     <script src="nav-history.js"></script>

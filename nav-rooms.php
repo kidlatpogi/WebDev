@@ -78,26 +78,28 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
     <!-- Chooser -->
     <table class="chooser-table" cellpadding="5">
         <tr>
-            <td>
-                <input type="radio" id="4th-floor" name="floor" value="4th Floor" checked>
-                <label for="4th-floor">4th Floor</label>
+            <td class="radio-toolbar">
+            <input type="radio" id="4th-floor" name="floor" value="4th Floor" checked>
+            <label for="4th-floor">4th Floor</label>
             </td>
-            <td>
-                <input type="radio" id="5th-floor" name="floor" value="5th Floor">
-                <label for="5th-floor">5th Floor</label>
+            <td class="radio-toolbar">
+            <input type="radio" id="5th-floor" name="floor" value="5th Floor">
+            <label for="5th-floor">5th Floor</label>
             </td>
         </tr>
+
         <tr>
-            <td>
-                <input type="radio" id="lecture-room" name="room-type" value="Lecture Room" checked>
-                <label for="lecture-room">Lecture</label>
+            <td class="radio-toolbar">
+            <input type="radio" id="lecture-room" name="room-type" value="Lecture Room" checked>
+            <label for="lecture-room">Lecture</label>
             </td>
-            <td>
-                <input type="radio" id="laboratory-room" name="room-type" value="Laboratory Room">
-                <label for="laboratory-room">Laboratory</label>
+            <td class="radio-toolbar">
+            <input type="radio" id="laboratory-room" name="room-type" value="Laboratory Room">
+            <label for="laboratory-room">Laboratory</label>
             </td>
         </tr>
     </table>
+
 
     <!-- Room grid -->
     <div id="room-grid"></div>
