@@ -4,38 +4,102 @@
   <meta charset="UTF-8">
   <title>Admin Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Rowdies&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.CSS">
+  <link rel="stylesheet" href="admin-home.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-  <div class="header">
-    <div class="logo">
-      <img src="NU LOGO.png" alt="NU Logo">
-      <h2>NATIONAL<br>UNIVERSITY</h2>
-    </div>
+<!-- COPY STARTS HERE--------------------------------------------------------------------------------- -->
+
+<nav class="nav">
+  <!-- Right side: Logo -->
+  <div class="logo">
+    <img src="Photos/nu-logo-label.png" alt="NU Logo">
   </div>
 
+  <!-- Hamburger Navigation Start -->
+  <div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+
+    <ul class="menu__box">
+      <li><a class="menu__item" href="admin-home.html">Home</a></li>
+      <li><a class="menu__item" href="">Reserve Rooms</a></li>
+      <li><a class="menu__item" href="admin-logs.html">Logs</a></li>
+      <li><a class="menu__item" href="">Available Rooms</a></li>
+      <li><a class="menu__item" href="admin-client.html">Clients</a></li>
+      <li><a class="menu__item" href="admin-archive-details.html">History</a></li>
+    </ul>
+  </div>
+  <!-- Hamburger Navigation End -->
+</nav>
+
+<!-- COPY ENDS HERE--------------------------------------------------------------------------------- -->
+
+  <!-- Main Content -->
   <div class="main">
+
+    <!-- Date and Time -->
     <div class="date-time-row">
-      <div class="info-card">
+      <div class="card">
         <small>DATE</small>
-        <h2>June 4, 2025</h2>
+        <h2 id="current-date">June 4, 2025</h2>
       </div>
-      <div class="info-card">
+      <div class="card">
         <small>TIME</small>
-        <h2>9:43 PM</h2>
+        <h2 id="current-time">9:43 PM</h2>
       </div>
     </div>
 
+    <!-- Dashboard Cards -->
     <div class="menu-row">
-      <div class="card">RESERVED<br>ROOMS</div>
-      <div class="card">LOGS</div>
-      <div class="card">AVAILABLE<br>ROOMS</div>
-      <div class="card">CLIENTS</div>
-      <div class="card">ARCHIVES</div>
+
+      <div class="card">
+        <a href="admin-reserved.html">RESERVED<br>ROOMS</a>
+      </div>
+
+      <div class="card">
+        <a href="admin-logs.html">LOGS</a>
+      </div>
+
+      <div class="card">
+        <a href="admin-available.html">AVAILABLE<br>ROOMS</a>
+      </div>
+
+      <div class="card">
+        <a href="admin-client.html">CLIENTS</a>
+      </div>
+
+      <div class="card">
+        <a href="admin-archive.html">ARCHIVES</a>
+      </div>
+
     </div>
   </div>
+
+  <!-- WORKING DATE AND TIME -->
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = now.toLocaleDateString('en-US', options);
+      document.getElementById('current-date').textContent = formattedDate;
+
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      const formattedTime = `${hours}:${minutes}:${seconds} ${ampm}`;
+      document.getElementById('current-time').textContent = formattedTime;
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
 
 </body>
 </html>
