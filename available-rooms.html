@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rooms</title>
+    <link rel="stylesheet" href="available-rooms.css"/>
+</head>
+<body>
+    <header>
+        <div class="header-right">
+            <img src="https://github.com/kidlatpogi/WebDev/blob/main/Photos/NU%20LOGO.png?raw=true" alt="NU LOGO" class="logo"/>
+            <h1>National<br>University</h1>
+        </div>
+    </header>
+    <main>
+        <h2>Available Rooms</h2>
+        <div class="search-container">
+            <input type="text" placeholder="Enter room number..." class="search-input"/>
+            <button class="search-btn">Search</button>
+        </div>
+        <div class="results">
+            <h3>Search Results for Room 401</h3>
+            <div class="room-card">
+                <button class="dropdown-toggle" onclick="toggleDropdown('room401')">Room 401 ▼</button>
+                <div id="room401" class="dropdown-content">
+                    <p><b>June 4, 2025</b></p>
+                    <p>7:00am - 8:00am</p>
+                </div>
+            </div>
+            <div class="room-card">
+                <button class="dropdown-toggle" onclick="toggleDropdown('room402')">Room 402 ▼</button>
+                <div id="room402" class="dropdown-content">
+                    <p><b>June 4, 2025</b></p>
+                    <p>8:00am - 9:00am</p>
+                    <p>1:00pm - 2:00pm</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function toggleDropdown(id){
+            const content = document.getElementById(id);
+            content.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

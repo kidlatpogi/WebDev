@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+header {
+  background-color: #1F265F;
+  color: white;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: flex-end;  /* keep everything on the right */
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left; /* left-align text inside h1 */
+}
+
+.logo {
+  height: 50px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.search-input {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  width: 250px;
+}
+
+.search-btn {
+  background-color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.results {
+  margin-top: 30px;
+}
+
+.room-card {
+  background-color: white;
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.dropdown-content.show {
+  display: block;
+}
