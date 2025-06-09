@@ -10,37 +10,51 @@ html, body {
   width: 100%;
   font-family: 'Rowdies', sans-serif;
   background-color: #f4f4f4;
-  overflow: hidden;
 }
 
-/* Header */
-.header {
+/* <!-- COPY STARTS HERE--------------------------------------------------------------------------------- --> */
+/* Navigation bar */
+.nav {
   background-color: #1F265F;
   color: white;
   height: 120px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0 40px;
+  position: relative;
+  z-index: 999;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: auto; /* This pushes the logo to the right */
 }
 
 .logo img {
   height: 60px;
+  max-width: 100%;
+  object-fit: contain;
 }
+
+/* Right section (e.g., nav items, profile, etc.) */
+.nav .right-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+/* <!-- COPY ENDS HERE--------------------------------------------------------------------------------- --> */
+
 
 /* Main layout */
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  padding: 40px 20px;
   gap: 40px;
 }
 
@@ -48,12 +62,16 @@ html, body {
 .date-time-row {
   display: flex;
   gap: 40px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .info-card {
   background: #fff;
-  width: 660px;
-  height: 250px;
+  width: 100%;
+  max-width: 660px;
+  min-height: 250px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -61,11 +79,13 @@ html, body {
   align-items: center;
   font-size: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .info-card h2 {
   margin-top: 5px;
   font-size: 24px;
+  text-align: center;
 }
 
 /* Menu cards */
@@ -74,11 +94,13 @@ html, body {
   gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .card {
   background: #fff;
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
   height: 250px;
   border-radius: 20px;
   display: flex;
@@ -95,4 +117,228 @@ html, body {
 .card:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reusable responsive bar */
+/* --- Desktop Navbar Styles --- */
+.desktop-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  position: fixed;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #1F265F;
+}
+
+.desktop-navbar ul {
+  display: flex;
+  gap: 70px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.desktop-navbar li a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.desktop-navbar li a:hover {
+  color: #FFD41C;
+  transform: scale(1.1);
+  text-decoration: underline;
+}
+
+.desktop-navbar li a.active {
+  color: #FFD41C;
+  text-decoration: underline;
+  transform: scale(1.1);
+}
+
+.desktop-navbar .user-dropdown-wrapper {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* --- Hamburger Menu Styles (Always visible) --- */
+.hamburger-menu {
+  display: block !important; /* Always show hamburger menu */
+}
+
+.hamburger-menu #menu__toggle {
+  opacity: 0;
+  position: absolute;
+}
+
+.hamburger-menu #menu__toggle:checked + .menu__btn > span {
+  transform: rotate(45deg);
+}
+.hamburger-menu #menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+.hamburger-menu #menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+.hamburger-menu #menu__toggle:checked ~ .menu__box {
+  left: 0 !important;
+}
+
+.hamburger-menu .menu__btn {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger-menu .menu__btn > span,
+.hamburger-menu .menu__btn > span::before,
+.hamburger-menu .menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #FFD41C;
+  transition-duration: .25s;
+}
+
+.hamburger-menu .menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.hamburger-menu .menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+
+.hamburger-menu .menu__box {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: white;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+  transition-duration: .25s;
+  z-index: 1099;
+}
+
+.hamburger-menu .menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: .25s;
+}
+
+.hamburger-menu .menu__item:hover {
+  background-color: #FFD41C;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 899px) {
+  .desktop-navbar {
+    display: none !important;
+  }
+  
+  .nav {
+    padding: 0 20px;
+    height: 80px;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding-top: 20px;
+    gap: 20px;
+  }
+
+  .date-time-row {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 100%;
+    min-height: 200px;
+  }
+
+  .card {
+    height: 200px;
+  }
+
+  .info-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .info-card {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 0 15px;
+  }
+  
+  .main {
+    padding: 20px 10px;
+  }
+  
+  .card {
+    max-width: 100%;
+    height: 180px;
+  }
+  
+  .hamburger-menu .menu__box {
+    width: 250px;
+  }
+  
+  .hamburger-menu .menu__item {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  
+  .hamburger-menu .menu__btn {
+    top: 25px;
+    left: 15px;
+  }
 }
