@@ -8,8 +8,6 @@ CREATE TABLE USERS(
     password VARCHAR(50) NOT NULL
 );
 
-ALTER TABLE USERS MODIFY password VARCHAR(255);
-
 -- usders details connected to USERS table
 CREATE TABLE USER_DETAILS(
     userDetails_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -19,6 +17,7 @@ CREATE TABLE USER_DETAILS(
     user_id INT UNIQUE,
     CONSTRAINT user_id_fk FOREIGN KEY(user_id) REFERENCES USERS(user_id) ON DELETE CASCADE
 );
+
 
 -- for rooms floor and type
 CREATE TABLE ROOMS(
@@ -69,13 +68,39 @@ CREATE TABLE ROOM_SCHEDULE (
     CONSTRAINT fk_room_schedule FOREIGN KEY(room_id) REFERENCES ROOMS(room_id)
 );
 
-SELECT * 
-FROM ROOMS 
-WHERE floor = '5th' AND room_type = 'Laboratory';
+-- PAG NA-CREATE NA LAHAT NG TABLE I-RUN NIYO ITONG MGA ALTER
+ALTER TABLE USERS MODIFY password VARCHAR(255);
+ALTER TABLE USER_DETAILS MODIFY COLUMN image LONGBLOB;
+ALTER TABLE RESERVATION_STATUS MODIFY status ENUM('Ongoing', 'Completed', 'Cancelled');
 
-SELECT * FROM USERS;
+-- PAG NA-RUN NA ITONG MGA ALTER, RUN NIYO NAMAN TO
+-- ITONG SELECT MUNE I-RUN, PAG NULL YUNG LAMAN I-RUN YUNG INSERT INTO SA BABA
+SELECT status FROM reservation_status;
 
--- INSERT THIS FIRST
+-- INTO YUNG IRA-RUN PAG NULL YUNG SA SELECT
+INSERT INTO RESERVATION_STATUS (status) 
+VALUES 
+    ('Cancelled'), 
+    ('Ongoing'), 
+    ('Completed');
+
+
+-- Ito i-run para makita mga reservations
+SELECT r.reservation_id, r.reservation_date, r.start_time, r.end_time,
+       ud.fname, ud.lname,
+       ro.floor, ro.room_type,
+       rs.status
+FROM RESERVATION r
+JOIN USER_DETAILS ud ON r.userDetails_id = ud.userDetails_id
+JOIN ROOMS ro ON r.room_id = ro.room_id
+JOIN RESERVATION_STATUS rs ON r.status_id = rs.status_id
+
+WHERE r.room_id = 402 -- bguhin niyo lang tong room number
+
+ORDER BY r.reservation_date, r.start_time;
+
+
+-- ITO MUNA INSERT
 INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 (401, '4th', 'Lecture'),
 (402, '4TH', 'Lecture'),
@@ -118,7 +143,7 @@ INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 
 (501, '5th', 'Laboratory'),
 (502, '5th', 'Laboratory'),
-(503, '5th', 'Lecture'),
+(503, '5th', 'Laboratory'),
 (504, '5th', 'Laboratory'),
 (505, '5th', 'Laboratory'),
 (506, '5th', 'Laboratory'),
@@ -128,7 +153,7 @@ INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 (511, '5th', 'Laboratory'),
 (512, '5th', 'Laboratory'),
 (514, '5th', 'Laboratory'),
-(516, '5th', 'Lecture'),
+(516, '5th', 'Laboratory'),
 (517, '5th', 'Laboratory'),
 (519, '5th', 'Laboratory'),
 (521, '5th', 'Lecture'),
@@ -156,7 +181,8 @@ INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 (531, '5th', 'Lecture');
 
--- INSERT THIS 2ND
+
+-- ITO ISUNOD SA INSERT
 INSERT INTO ROOM_SCHEDULE(room_id, day_of_week, start_time, end_time, subject_code, section, instructor, is_occupied)
 VALUES
 (401, 'Monday', '09:00:00', '11:40:00', 'ABCOM16X', 'ABC231', 'R. BUELO', TRUE),
@@ -1263,7 +1289,8 @@ VALUES
 (542, 'Thursday', '07:00:00', '12:20:00', 'ADESGN1S', 'ARC245P', 'R.PAJO', TRUE),
 (542, 'Thursday', '13:40:00', '20:20:00', 'ABTECN3S', 'ARC223P', '', TRUE);
 
--- INSERT THIS THIRD
+
+-- ITO ISUNOD
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (401, 'Lecture Room 401: TV, 40 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (402, 'Lecture Room 402: TV, 40 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (403, 'Lecture Room 403: TV, 40 seats, whiteboard.');
@@ -1301,16 +1328,16 @@ INSERT INTO ROOM_DETAILS (room_id, description) VALUES (434, 'Lecture Room 434: 
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (435, 'Lecture Room 435: TV, 40 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (436, 'Lecture Room 436: TV, 40 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (438, 'Zoology Laboratory 438: TV, 40 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (501, 'Computer Laboratory 501: TV, 40 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (502, 'Lecture Room 502: TV, 40 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (503, 'Physical Education Room 503: NULL, 0 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (504, 'Lecture Room 504: TV, 40 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (505, 'Lecture Room 505: TV, 40 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (506, 'Drawing Room 506: TV, 45 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (507, 'Computer Laboratory Room 507: TV, 40 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (508, 'Computer Laboratory 508: TV, 40 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (509, 'Circuit Laboratory 509: TV, 33 seats, whiteboard.');
-INSERT INTO ROOM_DETAILS (room_id, description) VALUES (510, 'Lecture Room 510: TV, 40 seats, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (501, 'Computer Laboratory 501: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (502, 'Computer Laboratory 502: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (503, 'Computer Laboratory 503: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (504, 'Computer Laboratory 504: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (505, 'Computer Laboratory 505: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (506, 'Computer Laboratory 506: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (507, 'Computer Laboratory 507: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (508, 'Computer Laboratory 508 TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (509, 'Computer Laboratory 509: TV, 40 Computers, whiteboard.');
+INSERT INTO ROOM_DETAILS (room_id, description) VALUES (510, 'Computer Laboratory 510: TV, 40 Computers, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (511, 'Hydraulics Laboratory 511: TV, 45 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (512, 'Geotech Laboratory 512: TV, 40 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (513, 'Lecture Room 513: TV, 40 seats, whiteboard.');
