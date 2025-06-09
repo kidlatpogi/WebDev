@@ -6,7 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if empty
+$full_first_name = $_SESSION['first_name'] ?? 'User';
+$user_first_name = explode(' ', trim($full_first_name))[0];
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +66,7 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
             <li><a class="menu__item" href="nav-reservation.php">Reservation</a></li>
             <li><a class="menu__item" href="nav-account.php">Account</a></li>
             <li><a class="menu__item" href="nav-history.php">History</a></li>
-            <li><a class="menu__item" href="index.php">Logout</a></li>
+            <li><a class="menu__item" href="index.html">Logout</a></li>
         </ul>
     </div>
     <!-- Hamburger Navigation End -->

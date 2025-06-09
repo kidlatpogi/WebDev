@@ -69,7 +69,7 @@ $user_first_name = explode(' ', trim($full_first_name))[0];
             <li><a class="menu__item" href="nav-reservation.php">Reservation</a></li>
             <li><a class="menu__item" href="nav-account.php">Account</a></li>
             <li><a class="menu__item" href="nav-history.php">History</a></li>
-            <li><a class="menu__item" href="index.php">Logout</a></li>
+            <li><a class="menu__item" href="index.html">Logout</a></li>
         </ul>
     </div>
     <!-- Hamburger Navigation End -->
@@ -166,7 +166,6 @@ $user_first_name = explode(' ', trim($full_first_name))[0];
             if (result.includes("success")) {
                 alert("Reservation successful!");
                 this.reset();
-                // Optionally redirect:
                 window.location.href = "nav-history.php"; 
             } else {
                 alert(result);

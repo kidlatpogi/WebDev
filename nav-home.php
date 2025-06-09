@@ -6,7 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if empty
+$full_first_name = $_SESSION['first_name'] ?? 'User';
+$user_first_name = explode(' ', trim($full_first_name))[0];
 ?>
 
 
@@ -44,7 +45,7 @@ $user_first_name = $_SESSION['first_name'] ?? 'User'; // fallback to 'User' if e
     <div class="user-dropdown-wrapper">
         <div id="user-dropdown">
             Hi, <?php echo htmlspecialchars($user_first_name); ?>
-
+            
             <div id="logout-menu">
                 <button onclick="logoutUser()">Logout</button>
             </div>

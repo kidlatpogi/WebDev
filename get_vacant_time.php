@@ -26,6 +26,7 @@ if (!$day_of_week) {
     exit;
 }
 
+// Get room schedule blocks marked as occupied
 $sql1 = "SELECT start_time, end_time FROM ROOM_SCHEDULE 
          WHERE room_id = ? AND day_of_week = ? AND is_occupied = TRUE";
 $stmt1 = $conn->prepare($sql1);
@@ -34,14 +35,16 @@ $stmt1->execute();
 $res1 = $stmt1->get_result();
 
 $sql2 = "SELECT start_time, end_time FROM RESERVATION 
-         WHERE room_id = ? AND reservation_date = ?";
+         WHERE room_id = ? AND reservation_date = ? AND status_id != 2";
 $stmt2 = $conn->prepare($sql2);
 $stmt2->bind_param("is", $room_id, $date);
 $stmt2->execute();
 $res2 = $stmt2->get_result();
 
+
 $times = [];
 
+// Merge both sources into occupied times
 while ($row = $res1->fetch_assoc()) {
     $times[] = [
         'start' => substr($row['start_time'], 0, 5),
@@ -56,3 +59,4 @@ while ($row = $res2->fetch_assoc()) {
 }
 
 echo json_encode($times);
+?>

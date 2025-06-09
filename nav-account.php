@@ -65,7 +65,7 @@ $first_two_names = implode(' ', array_slice($name_parts, 0, 2));
             <li><a class="menu__item" href="nav-reservation.php">Reservation</a></li>
             <li><a class="menu__item" href="nav-account.php">Account</a></li>
             <li><a class="menu__item" href="nav-history.php">History</a></li>
-            <li><a class="menu__item" href="index.php">Logout</a></li>
+            <li><a class="menu__item" href="index.html">Logout</a></li>
         </ul>
     </div>
     <!-- Hamburger Navigation End -->

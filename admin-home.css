@@ -342,3 +342,8 @@ html, body {
     left: 15px;
   }
 }
+
+/* transitions */
+@view-transition {
+    navigation: auto;
+}

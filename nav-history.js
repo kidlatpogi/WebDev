@@ -47,30 +47,32 @@ function renderHistoryCards(status, data) {
     wrapper.innerHTML = "";
 
     if (!data || data.length === 0) {
-    const noDataMessages = {
-        "Ongoing": "No Ongoing Reservation.",
-        "Cancelled": "No Cancelled Reservation.",
-        "Completed": "No Completed Reservation."
-    };
-    wrapper.innerHTML = `<div class="history-card no-data"><p>${noDataMessages[status] || "No reservations found."}</p></div>`;
-    return;
+        wrapper.classList.add("center");
+        const noDataMessages = {
+            "Ongoing": "No Ongoing Reservation.",
+            "Cancelled": "No Cancelled Reservation.",
+            "Completed": "No Completed Reservation."
+        };
+        wrapper.innerHTML = `<div class="history-card no-data"><p>${noDataMessages[status] || "No reservations found."}</p></div>`;
+        return;
     }
 
-    // Sort data by room, then time, then date
+    // If only one reservation, center it
+    if (data.length === 1) {
+        wrapper.classList.add("center");
+    } else {
+        wrapper.classList.remove("center");
+    }
+
+    // Sort data
     data.sort((a, b) => {
-        // Compare room (string)
         if (a.room.toLowerCase() < b.room.toLowerCase()) return -1;
         if (a.room.toLowerCase() > b.room.toLowerCase()) return 1;
-
-        // If rooms are equal, compare time (assuming time format like "HH:MM" 24-hour)
         if (a.time < b.time) return -1;
         if (a.time > b.time) return 1;
-
-        // If times are equal, compare date (assuming format "YYYY-MM-DD")
         if (a.date < b.date) return -1;
         if (a.date > b.date) return 1;
-
-        return 0; // all equal
+        return 0;
     });
 
     data.forEach(item => {
@@ -93,17 +95,19 @@ function renderHistoryCards(status, data) {
             const cancelBtn = card.querySelector(".cancel-btn");
             cancelBtn.addEventListener("click", () => {
                 if (confirm("Are you sure you want to cancel this reservation?")) {
-                    cancelReservation(item.reservation_id);
+                    cancelReservation(item.reservation_id, () => {
+                        fetchHistoryData("Cancelled");
+                    });
                 }
             });
         }
+
 
         wrapper.appendChild(card);
     });
 }
 
-
-function cancelReservation(reservationId) {
+function cancelReservation(reservationId, callback = null) {
     fetch('cancel_reservation.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -113,7 +117,12 @@ function cancelReservation(reservationId) {
     .then(result => {
         if (result.success) {
             alert("Reservation cancelled successfully.");
-            fetchHistoryData("Ongoing");
+            if (typeof callback === "function") {
+                document.querySelector('input[value="Cancelled"]').checked = true;
+                callback();
+            } else {
+                fetchHistoryData("Ongoing");
+            }
         } else {
             alert("Failed to cancel reservation. " + (result.error || ""));
             console.error("Cancel error detail:", result.error);

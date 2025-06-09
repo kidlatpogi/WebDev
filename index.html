@@ -137,15 +137,23 @@
             e.preventDefault();
             const formData = new FormData(this);
 
-            const response = await fetch('login.php', {
-                method: 'POST',
-                body: formData
-            });
-            const result = await response.text();
-            if (result.includes("success")) {
-                window.location.href = "nav-home.php";
-            } else {
-                alert(result);
+            try {
+                const response = await fetch('login.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.text();
+
+                if (result.trim() === 'admin_success') {
+                    window.location.href = 'admin-home.html';  // redirect admin
+                } else if (result.trim() === 'success') {
+                    window.location.href = 'nav-home.php';     // redirect regular user
+                } else {
+                    alert(result);  // show error message returned by PHP
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                alert('An error occurred. Please try again later.');
             }
         });
     </script>

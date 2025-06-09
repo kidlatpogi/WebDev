@@ -250,6 +250,14 @@ body {
     }
 }
 
+#history-cardview-wrapper.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 300px; /* Adjust as needed */
+}
+
 .history-card.no-data {
     grid-column: 1 / -1;
     justify-self: center;

@@ -44,20 +44,27 @@ if ($result->num_rows === 1) {
             $_SESSION['first_name'] = 'User';
             $_SESSION['last_name'] = '';
         }
-
         $stmt2->close();
 
-        echo "success"; // Tell JS to redirect
+        // Check if email matches admin pattern (allowing admin@admin-nu.com and admin123@admin-nu.com)
+        if (preg_match('/^admin.*@admin-nu\.com$/i', $email)) {
+            echo "admin_success"; // Special response for admin
+        } else {
+            echo "success"; // Regular user success
+        }
+        $stmt->close();
+        $conn->close();
         exit();
     } else {
+        $stmt->close();
+        $conn->close();
         echo "Invalid password.";
         exit();
     }
 } else {
+    $stmt->close();
+    $conn->close();
     echo "No account found with that email.";
     exit();
 }
-
-$stmt->close();
-$conn->close();
 ?>
