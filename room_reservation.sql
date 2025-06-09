@@ -80,8 +80,8 @@ SELECT status FROM reservation_status;
 -- INTO YUNG IRA-RUN PAG NULL YUNG SA SELECT
 INSERT INTO RESERVATION_STATUS (status) 
 VALUES 
+    ('Ongoing'),
     ('Cancelled'), 
-    ('Ongoing'), 
     ('Completed');
 
 
@@ -99,8 +99,7 @@ WHERE r.room_id = 402 -- bguhin niyo lang tong room number
 
 ORDER BY r.reservation_date, r.start_time;
 
-
--- ITO MUNA INSERT
+-- INSERT THIS FIRST
 INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 (401, '4th', 'Lecture'),
 (402, '4TH', 'Lecture'),
@@ -181,8 +180,23 @@ INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 INSERT INTO ROOMS (room_id, floor, room_type) VALUES
 (531, '5th', 'Lecture');
 
+INSERT INTO ROOMS (room_id, floor, room_type) VALUES
+(510, '5th', 'Lecture');
 
--- ITO ISUNOD SA INSERT
+INSERT INTO ROOMS (room_id, floor, room_type) VALUES
+(513, '5th', 'Lecture');
+
+INSERT INTO ROOMS (room_id, floor, room_type) VALUES
+(515, '5th', 'Laboratory');
+
+INSERT INTO ROOMS (room_id, floor, room_type) VALUES
+(518, '5th', 'Laboratory');
+
+INSERT INTO ROOMS (room_id, floor, room_type) VALUES
+(520, '5th', 'Laboratory');
+
+
+--INSERT THIS 2ND
 INSERT INTO ROOM_SCHEDULE(room_id, day_of_week, start_time, end_time, subject_code, section, instructor, is_occupied)
 VALUES
 (401, 'Monday', '09:00:00', '11:40:00', 'ABCOM16X', 'ABC231', 'R. BUELO', TRUE),
@@ -1290,7 +1304,7 @@ VALUES
 (542, 'Thursday', '13:40:00', '20:20:00', 'ABTECN3S', 'ARC223P', '', TRUE);
 
 
--- ITO ISUNOD
+-- INSERT THIS 3RD
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (401, 'Lecture Room 401: TV, 40 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (402, 'Lecture Room 402: TV, 40 seats, whiteboard.');
 INSERT INTO ROOM_DETAILS (room_id, description) VALUES (403, 'Lecture Room 403: TV, 40 seats, whiteboard.');
