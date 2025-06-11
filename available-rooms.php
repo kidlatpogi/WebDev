@@ -12,13 +12,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+function getDayOfWeek($date) {
+    return date('l', strtotime($date)); // Returns 'Monday', 'Tuesday', etc.
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $room_number = $_POST['room_number'];
     $date = $_POST['date'];
+    $day_of_week = getDayOfWeek($date);
 
-    $sql = "SELECT start_time, end_time FROM ROOM_SCHEDULE WHERE room_number = ? AND date = ?";
+    $sql = "SELECT start_time, end_time FROM ROOM_SCHEDULE WHERE room_id = ? AND day_of_week = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $room_number, $date);
+    $stmt->bind_param("is", $room_number, $day_of_week);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -27,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $occupied_slots[] = $row;
     }
 
-    // Assuming the room is available from 7:00 AM to 9:00 PM
     $available_slots = [];
     $start_time = strtotime("07:00:00");
     $end_time = strtotime("21:00:00");
@@ -38,8 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $is_occupied = false;
         foreach ($occupied_slots as $slot) {
-            if (($slot_start >= $slot['start_time'] && $slot_start < $slot['end_time']) ||
-                ($slot_end > $slot['start_time'] && $slot_end <= $slot['end_time'])) {
+            if (
+                ($slot_start >= $slot['start_time'] && $slot_start < $slot['end_time']) ||
+                ($slot_end > $slot['start_time'] && $slot_end <= $slot['end_time'])
+            ) {
                 $is_occupied = true;
                 break;
             }
