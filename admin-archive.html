@@ -5,52 +5,28 @@
   <title>Archives</title>
   <link href="https://fonts.googleapis.com/css2?family=Rowdies&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/admin-archive.css">
+  <link rel="stylesheet" href="../css/admin-archive-details.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
   <div class="header">
     <div class="logo">
       <img src="../img-src/nu-logo-caption.png" alt="National University">
     </div>
   </div>
-
-  <div class="main">
-    <h2 class="page-title">Archive</h2>
-
-    <div class="search-box">
-      <input type="text" placeholder="Search">
-      <button><img src="../img-src/search-icon.png" alt="Search Icon"></button>
-    </div>
-
-       <div class="table-header">
-      <div>Room Reserved</div>
-      <div>Date Reserved</div>
-      <div>Date Completed</div>
-    </div>
-
-<div class="archive-row">
-      <div><strong>ROOM 534</strong></div>
-      <div>JUNE 06, 2025</div>
-      <div>JUNE 12, 2025</div>
-    </div>
-
-    <div class="archive-row">
-      <div><strong>ROOM 410</strong></div>
-      <div>JUNE 02, 2025</div>
-      <div>JUNE 09, 2025</div>
-    </div>
-
-    <div class="archive-row">
-      <div><strong>ROOM 502</strong></div>
-      <div>MAY 28, 2025</div>
-      <div>JUNE 11, 2025</div>
-    </div>
-
-    <div class="archive-row">
-      <div><strong>ROOM 407</strong></div>
-      <div>JUNE 03, 2025</div>
-      <div>JUNE 08, 2025</div>
+  <div class="main-content-wrapper">
+    <div class="main">
+      <h2 class="page-title">Archive</h2>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search">
+        <button id="searchBtn"><img src="../img-src/search-icon.png" alt="Search Icon"></button>
+      </div>
+      <div class="table-header">
+        <div>Room Reserved</div>
+        <div>Date Reserved</div>
+        <div>Date Completed</div>
+      </div>
+      <div id="archiveTable"></div>
     </div>
   </div>
 
