@@ -264,3 +264,104 @@ html, body {
 }
 
 /* End reusable responsive visibility */
+
+/* Existing admin-archive.css content */
+
+/* ... (your existing header, main, search, table-header, archive-row, hamburger-menu styles) ... */
+
+/* Styles for the modal overlay (should be present) */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+/* Styles for the modal content (the actual pop-up container) */
+.modal-content {
+    /* No background-color or specific design here, as .room-details-card will handle it */
+    margin: auto; /* For vertical centering */
+    padding: 0;
+    border-radius: 20px; /* Consistent with the details card */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Stronger shadow for pop-up effect */
+    position: relative; /* For close button positioning */
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Max width from previous designs */
+    animation: fadeIn 0.3s ease-out; /* Simple fade-in animation */
+    overflow: hidden; /* Ensures contents like border-radius are respected */
+}
+
+/* Close button style */
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above content */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Styles for the main content wrapper when modal is active */
+.main-content-wrapper.blurred-background {
+    opacity: 0.5; /* Dim the background */
+    filter: blur(2px); /* Add a slight blur effect */
+    pointer-events: none; /* Prevent interaction with dimmed content */
+}
+
+/* Animation for modal fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ensure archive-row has appropriate margin and clickable indication */
+.archive-row {
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.archive-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+/* Adjustments for the main-content-wrapper itself */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content-wrapper {
+    width: 100%;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    min-height: calc(100vh - 100px); /* Adjust height to fit content below header */
+    padding-top: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main {
+    width: 100%;
+    max-width: 700px;
+    padding: 0 20px;
+}
