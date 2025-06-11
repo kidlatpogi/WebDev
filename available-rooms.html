@@ -8,24 +8,31 @@
 </head>
 <body>
     <header>
+        <!-- Hamburger Navigation Start -->
         <div class="hamburger-menu">
             <input id="menu__toggle" type="checkbox" />
-                           <span></span>
+            <label class="menu__btn" for="menu__toggle">
+                <span></span>
             </label>
+
             <ul class="menu__box">
                 <li><a class="menu__item" href="admin-home.html">Home</a></li>
-                <li><a class="menu__item" href="#">Reserve Rooms</a></li>
-                <li><a class="menu__item" href="#">Available Rooms</a></li>
+                <li><a class="menu__item" href="">Reserve Rooms</a></li>
+                <li><a class="menu__item" href="admin-logs.html">Logs</a></li>
+                <li><a class="menu__item" href="">Available Rooms</a></li>
                 <li><a class="menu__item" href="admin-client.html">Clients</a></li>
                 <li><a class="menu__item" href="admin-archive-details.html">History</a></li>
                 <li><a class="menu__item" href="index.html">Logout</a></li>
             </ul>
         </div>
+        <!-- Hamburger Navigation End -->
+
         <div class="header-right">
             <img src="https://github.com/kidlatpogi/WebDev/blob/main/Photos/NU%20LOGO.png?raw=true" alt="NU LOGO" class="logo"/>
             <h1>National<br>University</h1>
         </div>
     </header>
+
     <main>
         <h2>Available Rooms</h2>
         <div class="search-container">
@@ -37,6 +44,7 @@
             <!-- Search results will be displayed here -->
         </div>
     </main>
+
     <script>
         function searchRooms() {
             const roomNumber = document.getElementById('room_number').value;
