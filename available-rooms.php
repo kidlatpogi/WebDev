@@ -4,10 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "room_reservation";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -21,44 +18,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = $_POST['date'];
     $day_of_week = getDayOfWeek($date);
 
+    // Skip Sunday
+    if ($day_of_week === 'Sunday') {
+        echo json_encode([
+            "description" => "",
+            "available_slots" => []
+        ]);
+        exit;
+    }
+
+    // Get scheduled slots
     $sql = "SELECT start_time, end_time FROM ROOM_SCHEDULE WHERE room_id = ? AND day_of_week = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("is", $room_number, $day_of_week);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    $occupied_slots = [];
+    $scheduled_slots = [];
     while ($row = $result->fetch_assoc()) {
-        $occupied_slots[] = $row;
+        $scheduled_slots[] = [
+            "start_time" => date("g:iA", strtotime($row['start_time'])),
+            "end_time" => date("g:iA", strtotime($row['end_time']))
+        ];
     }
 
-    $available_slots = [];
-    $start_time = strtotime("07:00:00");
-    $end_time = strtotime("21:00:00");
+    // Get room type only
+    $sql = "SELECT description FROM ROOM_DETAILS WHERE room_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $room_number);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $full_description = $result->fetch_assoc()['description'];
+    preg_match('/^(.*?)(?=:)/', $full_description, $matches);
+    $room_type = $matches[1] ?? $full_description;
 
-    while ($start_time < $end_time) {
-        $slot_start = date("H:i:s", $start_time);
-        $slot_end = date("H:i:s", strtotime("+1 hour", $start_time));
-
-        $is_occupied = false;
-        foreach ($occupied_slots as $slot) {
-            if (
-                ($slot_start >= $slot['start_time'] && $slot_start < $slot['end_time']) ||
-                ($slot_end > $slot['start_time'] && $slot_end <= $slot['end_time'])
-            ) {
-                $is_occupied = true;
-                break;
-            }
-        }
-
-        if (!$is_occupied) {
-            $available_slots[] = ["start_time" => $slot_start, "end_time" => $slot_end];
-        }
-
-        $start_time = strtotime("+1 hour", $start_time);
-    }
-
-    echo json_encode($available_slots);
+    echo json_encode([
+        "description" => $room_type,
+        "available_slots" => $scheduled_slots
+    ]);
 }
 
 $conn->close();
