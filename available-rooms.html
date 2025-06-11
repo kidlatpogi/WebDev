@@ -14,7 +14,6 @@
             <label class="menu__btn" for="menu__toggle">
                 <span></span>
             </label>
-
             <ul class="menu__box">
                 <li><a class="menu__item" href="admin-home.html">Home</a></li>
                 <li><a class="menu__item" href="#">Reserve Rooms</a></li>
@@ -28,39 +27,56 @@
         <!-- Hamburger Navigation End -->
 
         <div class="header-right">
-           <img src="https://github.com/kidlatpogi/WebDev/blob/main/Photos/NU%20LOGO.png?raw=true" alt="NU LOGO" class="logo"/>
+            <img src="https://github.com/kidlatpogi/WebDev/blob/main/Photos/NU%20LOGO.png?raw=true" alt="NU LOGO" class="logo"/>
             <h1>National<br>University</h1>
         </div>
     </header>
     <main>
         <h2>Available Rooms</h2>
         <div class="search-container">
-            <input type="text" placeholder="Enter room number..." class="search-input"/>
-            <button class="search-btn">Search</button>
+            <input type="text" id="room_number" placeholder="Enter room number..." class="search-input"/>
+            <input type="date" id="date" class="search-input"/>
+            <button class="search-btn" onclick="searchRooms()">Search</button>
         </div>
-        <div class="results">
-            <h3>Search Results for Room 401</h3>
-            <div class="room-card">
-                <button class="dropdown-toggle" onclick="toggleDropdown('room401')">Room 401 ▼</button>
-                <div id="room401" class="dropdown-content">
-                    <p><b>June 4, 2025</b></p>
-                    <p>7:00am - 8:00am</p>
-                </div>
-            </div>
-            <div class="room-card">
-                <button class="dropdown-toggle" onclick="toggleDropdown('room402')">Room 402 ▼</button>
-                <div id="room402" class="dropdown-content">
-                    <p><b>June 4, 2025</b></p>
-                    <p>8:00am - 9:00am</p>
-                    <p>1:00pm - 2:00pm</p>
-                </div>
-            </div>
+        <div class="results" id="results">
+            <!-- Search results will be displayed here -->
         </div>
     </main>
     <script>
-        function toggleDropdown(id){
-            const content = document.getElementById(id);
-            content.classList.toggle("show");
+        function searchRooms() {
+            const roomNumber = document.getElementById('room_number').value;
+            const date = document.getElementById('date').value;
+            const resultsDiv = document.getElementById('results');
+
+            fetch('available-rooms.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `room_number=${roomNumber}&date=${date}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultsDiv.innerHTML = '';
+                if (data.length > 0) {
+                    const title = document.createElement('h3');
+                    title.textContent = `Available Times for Room ${roomNumber} on ${date}`;
+                    resultsDiv.appendChild(title);
+
+                    data.forEach(slot => {
+                        const card = document.createElement('div');
+                        card.className = 'room-card';
+                        card.innerHTML = `<p><b>${slot.start_time} - ${slot.end_time}</b></p>`;
+                        resultsDiv.appendChild(card);
+                    });
+                } else {
+                    resultsDiv.innerHTML = '<p>No available time slots found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultsDiv.innerHTML = '<p>An error occurred while fetching the data.</p>';
+            });
         }
     </script>
 </body>
