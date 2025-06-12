@@ -112,6 +112,7 @@ html, body {
 }
 
 /* New table row styles */
+/* hinide ko muna puta nasira yung gawa ko na archive row
 .table-row {
   display: flex;
   justify-content: space-between;
@@ -121,7 +122,7 @@ html, body {
 .table-row > div {
   flex: 1;
   text-align: center;
-}
+} */
 
 /* Reusable responsive bar */
 /* --- Desktop Navbar Styles --- */

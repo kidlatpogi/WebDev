@@ -10,19 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
             let html = '';
             reservations.forEach((reservation, idx) => {
                 const dateReserved = new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
-                const dateCompleted = dateReserved; // Replace with actual completed date if available
+                const dateCompleted = dateReserved;
                 html += `
-                  <div class="table-row" data-index="${idx}" style="cursor:pointer;">
-                    <div>${reservation.room_number}</div>
-                    <div>${dateReserved}</div>
-                    <div>${dateCompleted}</div>
+                  <div class="archive-row" data-index="${idx}">
+                    <div style="font-weight:bold;">Room ${reservation.room_number} | ${reservation.room_type}</div>
+                    <div><b>Date Reserved:</b> ${dateReserved}</div>
+                    <div><b>Date Completed:</b> ${dateCompleted}</div>
+                    <div><b>Reserved By:</b> ${reservation.fname} ${reservation.lname}</div>
                   </div>
                 `;
             });
             table.innerHTML = html;
 
             // Add click event to each row
-            document.querySelectorAll('.table-row').forEach(row => {
+            document.querySelectorAll('.archive-row').forEach(row => {
                 row.addEventListener('click', function() {
                     const idx = this.getAttribute('data-index');
                     showModal(reservations[idx]);
