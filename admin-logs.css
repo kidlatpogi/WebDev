@@ -11,17 +11,16 @@ html, body {
   color: #000;
 }
 
-/* <!-- COPY STARTS HERE--------------------------------------------------------------------------------- --> */
 /* Navigation bar */
 .nav {
   background-color: #1F265F;
   color: white;
-  height: 120px;
+  height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 20px;
   position: relative;
   z-index: 999;
 }
@@ -29,62 +28,126 @@ html, body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-left: auto; /* This pushes the logo to the right */
 }
 
 .logo img {
-  height: 60px;
+  height: 50px;
   max-width: 100%;
   object-fit: contain;
 }
 
-/* Right section (e.g., nav items, profile, etc.) */
-.nav .right-section {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-/* <!-- COPY ENDS HERE--------------------------------------------------------------------------------- --> */
-
 /* Main layout */
 .main {
-  padding: 40px 20px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-/* Date Titles */
-.date-title {
-  font-size: 20px;
+.page-title {
+  font-size: 24px;
   font-weight: bold;
-  margin-top: 20px;
-}
-
-/* Cards */
-.reservation-card {
-  background: #fff;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 20px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.reservation-card h3 {
-  font-size: 20px;
+  color: #1F265F;
   margin-bottom: 10px;
 }
 
-.reservation-card p {
-  font-size: 14px;
-  margin-bottom: 5px;
+/* Search */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Reusable responsive bar */
+.search-box input {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  font-size: 14px;
+  font-family: 'Rowdies', sans-serif;
+  background: transparent;
+}
+
+.search-box button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-box img {
+  height: 20px;
+  width: 20px;
+}
+
+/* Filter buttons */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  font-family: 'Rowdies', sans-serif;
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #ddd;
+}
+
+.filter-btn.active {
+  background-color: #1F265F;
+  color: white;
+}
+
+/* Log cards */
+.log-entry {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 500px;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.log-time {
+  font-size: 14px;
+  width: 70px;
+  color: #555;
+}
+
+.log-box {
+  flex-grow: 1;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Status colors */
+.green {
+  border-left: 8px solid #00cc44;
+}
+
+.red {
+  border-left: 8px solid red;
+}
+
+.yellow {
+  border-left: 8px solid #FFD700;
+}
+
 /* --- Desktop Navbar Styles --- */
 .desktop-navbar {
   display: flex;
@@ -135,9 +198,9 @@ html, body {
   transform: translateY(-50%);
 }
 
-/* --- Hamburger Menu Styles (Always visible) --- */
+/* --- Hamburger Menu Styles --- */
 .hamburger-menu {
-  display: block !important; /* Always show hamburger menu */
+  display: block !important;
 }
 
 .hamburger-menu #menu__toggle {
@@ -162,7 +225,7 @@ html, body {
 
 .hamburger-menu .menu__btn {
   position: fixed;
-  top: 30px;
+  top: 45px; /* Centered vertically in 120px nav */
   left: 30px;
   width: 26px;
   height: 26px;
@@ -225,14 +288,19 @@ html, body {
   .desktop-navbar {
     display: none !important;
   }
-  
+
   .nav {
     padding: 0 20px;
-    height: 80px;
+    height: 120px; /* Make sure height matches desktop */
   }
-  
+
   .logo img {
-    height: 40px;
+    height: 50px;
+  }
+
+  .hamburger-menu .menu__btn {
+    top: 47px; /* Center in nav bar */
+    left: 20px;
   }
 }
 
@@ -270,33 +338,34 @@ html, body {
 @media (max-width: 480px) {
   .nav {
     padding: 0 15px;
+    height: 120px;
   }
-  
+
   .main {
     padding: 20px 10px;
   }
-  
+
   .card {
     max-width: 100%;
     height: 180px;
   }
-  
+
   .hamburger-menu .menu__box {
     width: 250px;
   }
-  
+
   .hamburger-menu .menu__item {
     font-size: 18px;
     padding: 10px 20px;
   }
-  
+
   .hamburger-menu .menu__btn {
-    top: 25px;
+    top: 47px;
     left: 15px;
   }
 }
 
 /* transitions */
 @view-transition {
-    navigation: auto;
+  navigation: auto;
 }

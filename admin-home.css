@@ -1,138 +1,139 @@
-/* Global reset */
-* {
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Rowdies', sans-serif;
+  background-color: #f4f4f4;
+  color: #000;
 }
 
 html, body {
   height: 100%;
-  width: 100%;
-  font-family: 'Rowdies', sans-serif;
-  background-color: #f4f4f4;
 }
 
-/* <!-- COPY STARTS HERE--------------------------------------------------------------------------------- --> */
-/* Navigation bar */
 .nav {
   background-color: #1F265F;
   color: white;
-  height: 120px;
+  height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
-  position: relative;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 999;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-left: auto; /* This pushes the logo to the right */
 }
 
 .logo img {
-  height: 60px;
+  height: 50px;
   max-width: 100%;
   object-fit: contain;
 }
 
-/* Right section (e.g., nav items, profile, etc.) */
-.nav .right-section {
-  display: flex;
-  align-items: center;
-  gap: 30px;
+.main-content-wrapper {
+  margin-top: 80px;
 }
-/* <!-- COPY ENDS HERE--------------------------------------------------------------------------------- --> */
 
-
-/* Main layout */
 .main {
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  gap: 40px;
+  gap: 20px;
 }
 
-/* Date and Time cards */
-.date-time-row {
-  display: flex;
-  gap: 40px;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.info-card {
-  background: #fff;
-  width: 100%;
-  max-width: 660px;
-  min-height: 250px;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.info-card h2 {
-  margin-top: 5px;
+.page-title {
   font-size: 24px;
-  text-align: center;
+  font-weight: bold;
+  color: #1F265F;
+  margin-bottom: 10px;
 }
 
-/* Menu cards */
-.menu-row {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-
-.card {
-  background: #fff;
-  width: 100%;
-  max-width: 250px;
-  height: 250px;
-  border-radius: 20px;
+.search-box {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 16px;
-  color: #000;
-  font-weight: bold;
-  transition: transform 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover {
-  transform: scale(1.05);
+.search-box input {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  font-size: 14px;
+  font-family: 'Rowdies', sans-serif;
+  background: transparent;
+}
+
+.search-box button {
+  background: none;
+  border: none;
   cursor: pointer;
 }
 
-.card a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  color: inherit;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.search-box img {
+  height: 20px;
+  width: 20px;
 }
 
-/* Reusable responsive bar */
-/* --- Desktop Navbar Styles --- */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 500px;
+  font-weight: bold;
+  padding: 10px;
+  background: #1F265F;
+  color: white;
+  border-radius: 10px;
+}
+
+#archiveTable {
+  width: 90%;
+  max-width: 500px;
+}
+
+.log-entry {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.log-time {
+  font-size: 14px;
+  width: 70px;
+  color: #555;
+}
+
+.log-box {
+  flex-grow: 1;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.green { border-left: 8px solid #00cc44; }
+.red { border-left: 8px solid red; }
+.yellow { border-left: 8px solid #FFD700; }
+
+/* Desktop Navbar */
 .desktop-navbar {
   display: flex;
   justify-content: center;
@@ -163,16 +164,11 @@ html, body {
   display: inline-block;
 }
 
-.desktop-navbar li a:hover {
-  color: #FFD41C;
-  transform: scale(1.1);
-  text-decoration: underline;
-}
-
+.desktop-navbar li a:hover,
 .desktop-navbar li a.active {
   color: #FFD41C;
-  text-decoration: underline;
   transform: scale(1.1);
+  text-decoration: underline;
 }
 
 .desktop-navbar .user-dropdown-wrapper {
@@ -182,9 +178,9 @@ html, body {
   transform: translateY(-50%);
 }
 
-/* --- Hamburger Menu Styles (Always visible) --- */
+/* Hamburger Menu */
 .hamburger-menu {
-  display: block !important; /* Always show hamburger menu */
+  display: block;
 }
 
 .hamburger-menu #menu__toggle {
@@ -195,14 +191,17 @@ html, body {
 .hamburger-menu #menu__toggle:checked + .menu__btn > span {
   transform: rotate(45deg);
 }
+
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::before {
   top: 0;
   transform: rotate(0deg);
 }
+
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::after {
   top: 0;
   transform: rotate(90deg);
 }
+
 .hamburger-menu #menu__toggle:checked ~ .menu__box {
   left: 0 !important;
 }
@@ -232,6 +231,7 @@ html, body {
   content: '';
   top: -8px;
 }
+
 .hamburger-menu .menu__btn > span::after {
   content: '';
   top: 8px;
@@ -267,17 +267,17 @@ html, body {
   background-color: #FFD41C;
 }
 
-/* --- Responsive Adjustments --- */
+/* Responsive */
 @media (max-width: 899px) {
   .desktop-navbar {
     display: none !important;
   }
-  
+
   .nav {
     padding: 0 20px;
     height: 80px;
   }
-  
+
   .logo img {
     height: 40px;
   }
@@ -318,32 +318,32 @@ html, body {
   .nav {
     padding: 0 15px;
   }
-  
+
   .main {
     padding: 20px 10px;
   }
-  
+
   .card {
     max-width: 100%;
     height: 180px;
   }
-  
+
   .hamburger-menu .menu__box {
     width: 250px;
   }
-  
+
   .hamburger-menu .menu__item {
     font-size: 18px;
     padding: 10px 20px;
   }
-  
+
   .hamburger-menu .menu__btn {
     top: 25px;
     left: 15px;
   }
 }
 
-/* transitions */
+/* Transition View */
 @view-transition {
-    navigation: auto;
+  navigation: auto;
 }
