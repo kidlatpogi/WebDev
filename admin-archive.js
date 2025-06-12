@@ -12,11 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dateReserved = new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
                 const dateCompleted = dateReserved;
                 html += `
-                  <div class="archive-row" data-index="${idx}">
+                  <div class="archive-row" data-index="${idx}" style="cursor:pointer;">
                     <div style="font-weight:bold;">Room ${reservation.room_number} | ${reservation.room_type}</div>
-                    <div><b>Date Reserved:</b> ${dateReserved}</div>
-                    <div><b>Date Completed:</b> ${dateCompleted}</div>
-                    <div><b>Reserved By:</b> ${reservation.fname} ${reservation.lname}</div>
+                    <div>Date Reserved: ${dateReserved}</div>
+                    <div>Date Completed: ${dateCompleted}</div>
                   </div>
                 `;
             });
@@ -45,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
         modalDetails.innerHTML = `
             <div style="font-weight:bold; margin-bottom:10px;">Reservation Details</div>
             <div><b>Room Number:</b> ${reservation.room_number}</div>
+            <div><b>Room Type:</b> ${reservation.room_type}</div>
             <div><b>Date Reserved:</b> ${new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</div>
             <div><b>Date Completed:</b> ${new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</div>
-            <div><b>Room Type:</b> ${reservation.room_type}</div>
             <div><b>Reserved By:</b> ${reservation.fname} ${reservation.lname}</div>
         `;
         modalOverlay.classList.add('active');
