@@ -10,19 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
             let html = '';
             reservations.forEach((reservation, idx) => {
                 const dateReserved = new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
-                const dateCompleted = dateReserved;
+                const dateCompleted = reservation.completed_date
+                    ? new Date(reservation.completed_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })
+                    : dateReserved;
                 html += `
-                  <div class="archive-row" data-index="${idx}" style="cursor:pointer;">
-                    <div style="font-weight:bold;">Room ${reservation.room_number} | ${reservation.room_type}</div>
-                    <div>Date Reserved: ${dateReserved}</div>
-                    <div>Date Completed: ${dateCompleted}</div>
+                  <div class="archive-table-row" data-index="${idx}">
+                    <div class="archive-col room">ROOM ${reservation.room_number}</div>
+                    <div class="archive-col reserved">${dateReserved}</div>
+                    <div class="archive-col completed">${dateCompleted}</div>
                   </div>
                 `;
             });
             table.innerHTML = html;
 
             // Add click event to each row
-            document.querySelectorAll('.archive-row').forEach(row => {
+            document.querySelectorAll('.archive-table-row').forEach(row => {
                 row.addEventListener('click', function() {
                     const idx = this.getAttribute('data-index');
                     showModal(reservations[idx]);
@@ -41,13 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.querySelector('.main-content-wrapper');
 
     function showModal(reservation) {
+        if (!reservation) return;
+        const dateReserved = new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
+        const dateCompleted = reservation.completed_date
+            ? new Date(reservation.completed_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })
+            : dateReserved;
         modalDetails.innerHTML = `
-            <div style="font-weight:bold; margin-bottom:10px;">Reservation Details</div>
-            <div><b>Room Number:</b> ${reservation.room_number}</div>
-            <div><b>Room Type:</b> ${reservation.room_type}</div>
-            <div><b>Date Reserved:</b> ${new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</div>
-            <div><b>Date Completed:</b> ${new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</div>
-            <div><b>Reserved By:</b> ${reservation.fname} ${reservation.lname}</div>
+            <span class="modal-label">ROOM NUMBER:</span><span class="modal-value">${reservation.room_number}</span>
+            <span class="modal-label">DATE RESERVED:</span><span class="modal-value">${dateReserved}</span>
+            <span class="modal-label">DATE COMPLETED:</span><span class="modal-value">${dateCompleted}</span>
+            <span class="modal-label">ROOM TYPE:</span><span class="modal-value">${reservation.room_type}</span>
+            <span class="modal-label">RESERVED BY:</span><span class="modal-value">${reservation.fname} ${reservation.lname}</span>
         `;
         modalOverlay.classList.add('active');
         mainContent.classList.add('blurred-background');
@@ -58,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.classList.remove('blurred-background');
     };
 
-    // Also close modal when clicking outside modal-content
+    // Close modal when clicking outside the content
     modalOverlay.onclick = function(e) {
         if (e.target === modalOverlay) {
             modalOverlay.classList.remove('active');
