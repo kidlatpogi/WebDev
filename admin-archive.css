@@ -111,6 +111,18 @@ html, body {
   font-size: 15px;
 }
 
+/* New table row styles */
+.table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-weight: normal;
+}
+.table-row > div {
+  flex: 1;
+  text-align: center;
+}
+
 /* Reusable responsive bar */
 /* --- Desktop Navbar Styles --- */
 .desktop-navbar {

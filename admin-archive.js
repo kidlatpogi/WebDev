@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetch('get-archive-data.php')
-        .then(response => response.json())
+        .then(response => {
+            console.log('Raw response:', response);
+            return response.json();
+        })
         .then(reservations => {
+            console.log('Parsed reservations:', reservations);
             const table = document.getElementById('archiveTable');
             if (!reservations.length) {
                 table.innerHTML = '<p style="text-align: center; margin-top: 30px;">No completed reservations found.</p>';
@@ -10,12 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let html = '';
             reservations.forEach(reservation => {
                 const dateReserved = new Date(reservation.reservation_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
-                // For demo, using reservation_date as completed date
+                
+                const dateCompleted = dateReserved;
                 html += `
-                  <div class="table-row">
-                    <div>${reservation.room_number}</div>
-                    <div>${dateReserved}</div>
-                    <div>${dateReserved}</div>
+                  <div class="table-row" style="display: flex; font-weight: normal;">
+                    <div style="flex:1;">${reservation.room_number}</div>
+                    <div style="flex:1;">${dateReserved}</div>
+                    <div style="flex:1;">${dateCompleted}</div>
                   </div>
                 `;
             });
@@ -23,5 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {
             document.getElementById('archiveTable').innerHTML = '<p style="color:red;">Failed to load data.</p>';
+            console.error('Error fetching archive data:', err);
         });
 });
