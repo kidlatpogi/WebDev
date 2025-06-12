@@ -1,139 +1,91 @@
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
   font-family: 'Rowdies', sans-serif;
   background-color: #f4f4f4;
   color: #000;
 }
 
-html, body {
-  height: 100%;
-}
-
+/* <!-- COPY STARTS HERE--------------------------------------------------------------------------------- --> */
+/* Navigation bar */
 .nav {
   background-color: #1F265F;
   color: white;
-  height: 80px;
+  height: 120px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
+  padding: 0 40px;
+  position: relative;
   z-index: 999;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  gap: 10px;
+  margin-left: auto; /* This pushes the logo to the right */
 }
 
 .logo img {
-  height: 50px;
+  height: 60px;
   max-width: 100%;
   object-fit: contain;
 }
 
-.main-content-wrapper {
-  margin-top: 80px;
+/* Right section (e.g., nav items, profile, etc.) */
+.nav .right-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
+/* <!-- COPY ENDS HERE--------------------------------------------------------------------------------- --> */
 
+/* Main layout */
 .main {
-  padding: 30px 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-.page-title {
-  font-size: 24px;
+/* Date Titles */
+.date-title {
+  font-size: 20px;
   font-weight: bold;
-  color: #1F265F;
+  margin-top: 20px;
+}
+
+/* Cards */
+.reservation-card {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-card h3 {
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
-.search-box {
-  display: flex;
-  align-items: center;
-  background: white;
-  padding: 10px 15px;
-  border-radius: 25px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.search-box input {
-  border: none;
-  outline: none;
-  flex-grow: 1;
+.reservation-card p {
   font-size: 14px;
-  font-family: 'Rowdies', sans-serif;
-  background: transparent;
+  margin-bottom: 5px;
 }
 
-.search-box button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.search-box img {
-  height: 20px;
-  width: 20px;
-}
-
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 500px;
-  font-weight: bold;
-  padding: 10px;
-  background: #1F265F;
-  color: white;
-  border-radius: 10px;
-}
-
-#archiveTable {
-  width: 90%;
-  max-width: 500px;
-}
-
-.log-entry {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 15px;
-  margin-bottom: 15px;
-}
-
-.log-time {
-  font-size: 14px;
-  width: 70px;
-  color: #555;
-}
-
-.log-box {
-  flex-grow: 1;
-  border-radius: 15px;
-  padding: 15px;
-  text-align: left;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background: white;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.green { border-left: 8px solid #00cc44; }
-.red { border-left: 8px solid red; }
-.yellow { border-left: 8px solid #FFD700; }
-
-/* Desktop Navbar */
+/* Reusable responsive bar */
+/* --- Desktop Navbar Styles --- */
 .desktop-navbar {
   display: flex;
   justify-content: center;
@@ -164,11 +116,16 @@ html, body {
   display: inline-block;
 }
 
-.desktop-navbar li a:hover,
-.desktop-navbar li a.active {
+.desktop-navbar li a:hover {
   color: #FFD41C;
   transform: scale(1.1);
   text-decoration: underline;
+}
+
+.desktop-navbar li a.active {
+  color: #FFD41C;
+  text-decoration: underline;
+  transform: scale(1.1);
 }
 
 .desktop-navbar .user-dropdown-wrapper {
@@ -178,9 +135,9 @@ html, body {
   transform: translateY(-50%);
 }
 
-/* Hamburger Menu */
+/* --- Hamburger Menu Styles (Always visible) --- */
 .hamburger-menu {
-  display: block;
+  display: block !important; /* Always show hamburger menu */
 }
 
 .hamburger-menu #menu__toggle {
@@ -191,17 +148,14 @@ html, body {
 .hamburger-menu #menu__toggle:checked + .menu__btn > span {
   transform: rotate(45deg);
 }
-
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::before {
   top: 0;
   transform: rotate(0deg);
 }
-
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::after {
   top: 0;
   transform: rotate(90deg);
 }
-
 .hamburger-menu #menu__toggle:checked ~ .menu__box {
   left: 0 !important;
 }
@@ -231,7 +185,6 @@ html, body {
   content: '';
   top: -8px;
 }
-
 .hamburger-menu .menu__btn > span::after {
   content: '';
   top: 8px;
@@ -267,17 +220,17 @@ html, body {
   background-color: #FFD41C;
 }
 
-/* Responsive */
+/* --- Responsive Adjustments --- */
 @media (max-width: 899px) {
   .desktop-navbar {
     display: none !important;
   }
-
+  
   .nav {
     padding: 0 20px;
     height: 80px;
   }
-
+  
   .logo img {
     height: 40px;
   }
@@ -318,32 +271,32 @@ html, body {
   .nav {
     padding: 0 15px;
   }
-
+  
   .main {
     padding: 20px 10px;
   }
-
+  
   .card {
     max-width: 100%;
     height: 180px;
   }
-
+  
   .hamburger-menu .menu__box {
     width: 250px;
   }
-
+  
   .hamburger-menu .menu__item {
     font-size: 18px;
     padding: 10px 20px;
   }
-
+  
   .hamburger-menu .menu__btn {
     top: 25px;
     left: 15px;
   }
 }
 
-/* Transition View */
+/* transitions */
 @view-transition {
-  navigation: auto;
+    navigation: auto;
 }

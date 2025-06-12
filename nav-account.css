@@ -474,11 +474,4 @@ nav a {
         display: block !important;
     }
 }
-
-/* Disable scrolling if all content fits in the viewport (web/desktop view) */
-@media (min-width: 900px) {
-    html, body {
-        overflow: hidden;
-    }
-}
 /* End reusable responsive visibility */

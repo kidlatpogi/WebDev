@@ -1,16 +1,17 @@
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
   font-family: 'Rowdies', sans-serif;
   background-color: #f4f4f4;
   color: #000;
 }
 
-html, body {
-  height: 100%;
-}
-
+/* Navigation bar */
 .nav {
   background-color: #1F265F;
   color: white;
@@ -20,9 +21,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   z-index: 999;
 }
 
@@ -37,10 +36,7 @@ html, body {
   object-fit: contain;
 }
 
-.main-content-wrapper {
-  margin-top: 80px;
-}
-
+/* Main layout */
 .main {
   padding: 30px 20px;
   display: flex;
@@ -56,6 +52,7 @@ html, body {
   margin-bottom: 10px;
 }
 
+/* Search */
 .search-box {
   display: flex;
   align-items: center;
@@ -87,27 +84,36 @@ html, body {
   width: 20px;
 }
 
-.table-header {
+/* Filter buttons */
+.filter-buttons {
   display: flex;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 500px;
-  font-weight: bold;
-  padding: 10px;
-  background: #1F265F;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  font-family: 'Rowdies', sans-serif;
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #ddd;
+}
+
+.filter-btn.active {
+  background-color: #1F265F;
   color: white;
-  border-radius: 10px;
 }
 
-#archiveTable {
-  width: 90%;
-  max-width: 500px;
-}
-
+/* Log cards */
 .log-entry {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  max-width: 500px;
   gap: 15px;
   margin-bottom: 15px;
 }
@@ -129,11 +135,20 @@ html, body {
   line-height: 1.5;
 }
 
-.green { border-left: 8px solid #00cc44; }
-.red { border-left: 8px solid red; }
-.yellow { border-left: 8px solid #FFD700; }
+/* Status colors */
+.green {
+  border-left: 8px solid #00cc44;
+}
 
-/* Desktop Navbar */
+.red {
+  border-left: 8px solid red;
+}
+
+.yellow {
+  border-left: 8px solid #FFD700;
+}
+
+/* --- Desktop Navbar Styles --- */
 .desktop-navbar {
   display: flex;
   justify-content: center;
@@ -164,11 +179,16 @@ html, body {
   display: inline-block;
 }
 
-.desktop-navbar li a:hover,
-.desktop-navbar li a.active {
+.desktop-navbar li a:hover {
   color: #FFD41C;
   transform: scale(1.1);
   text-decoration: underline;
+}
+
+.desktop-navbar li a.active {
+  color: #FFD41C;
+  text-decoration: underline;
+  transform: scale(1.1);
 }
 
 .desktop-navbar .user-dropdown-wrapper {
@@ -178,9 +198,9 @@ html, body {
   transform: translateY(-50%);
 }
 
-/* Hamburger Menu */
+/* --- Hamburger Menu Styles --- */
 .hamburger-menu {
-  display: block;
+  display: block !important;
 }
 
 .hamburger-menu #menu__toggle {
@@ -191,24 +211,21 @@ html, body {
 .hamburger-menu #menu__toggle:checked + .menu__btn > span {
   transform: rotate(45deg);
 }
-
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::before {
   top: 0;
   transform: rotate(0deg);
 }
-
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::after {
   top: 0;
   transform: rotate(90deg);
 }
-
 .hamburger-menu #menu__toggle:checked ~ .menu__box {
   left: 0 !important;
 }
 
 .hamburger-menu .menu__btn {
   position: fixed;
-  top: 30px;
+  top: 45px; /* Centered vertically in 120px nav */
   left: 30px;
   width: 26px;
   height: 26px;
@@ -231,7 +248,6 @@ html, body {
   content: '';
   top: -8px;
 }
-
 .hamburger-menu .menu__btn > span::after {
   content: '';
   top: 8px;
@@ -267,7 +283,7 @@ html, body {
   background-color: #FFD41C;
 }
 
-/* Responsive */
+/* --- Responsive Adjustments --- */
 @media (max-width: 899px) {
   .desktop-navbar {
     display: none !important;
@@ -275,11 +291,16 @@ html, body {
 
   .nav {
     padding: 0 20px;
-    height: 80px;
+    height: 120px; /* Make sure height matches desktop */
   }
 
   .logo img {
-    height: 40px;
+    height: 50px;
+  }
+
+  .hamburger-menu .menu__btn {
+    top: 47px; /* Center in nav bar */
+    left: 20px;
   }
 }
 
@@ -317,6 +338,7 @@ html, body {
 @media (max-width: 480px) {
   .nav {
     padding: 0 15px;
+    height: 120px;
   }
 
   .main {
@@ -338,12 +360,12 @@ html, body {
   }
 
   .hamburger-menu .menu__btn {
-    top: 25px;
+    top: 47px;
     left: 15px;
   }
 }
 
-/* Transition View */
+/* transitions */
 @view-transition {
   navigation: auto;
 }

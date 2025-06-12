@@ -4,24 +4,43 @@
   <meta charset="UTF-8">
   <title>Logs</title>
   <link href="https://fonts.googleapis.com/css2?family=Rowdies&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="admin-logs-css.css">
+  <link rel="stylesheet" href="admin-logs.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-  <div class="header">
-    <div class="logo">
-      <img src="NU LOGO.png" alt="NU Logo">
-      <h2>NATIONAL<br>UNIVERSITY</h2>
+  <nav class="nav">
+    <!-- Hamburger Navigation Start -->
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox" />
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+
+      <ul class="menu__box">
+        <li><a class="menu__item" href="admin-home.html">Home</a></li>
+        <li><a class="menu__item" href="admin-reservation.html">Reserve Rooms</a></li>
+        <li><a class="menu__item" href="admin-logs.html">Logs</a></li>
+        <li><a class="menu__item" href="admin-available-rooms.html">Available Rooms</a></li>
+        <li><a class="menu__item" href="admin-client.html">Clients</a></li>
+        <li><a class="menu__item" href="admin-archive.html">Archive</a></li>
+        <li><a class="menu__item" href="index.html">Logout</a></li>
+      </ul>
     </div>
-  </div>
+    <!-- Hamburger Navigation End -->
+    
+    <!-- Logo -->
+    <div class="logo">
+      <img src="Photos/nu-logo-label.png" alt="NU Logo">
+    </div>
+  </nav>
 
   <div class="main">
     <h2 class="page-title">Today's Logs</h2>
 
     <div class="search-box">
       <input type="text" placeholder="Search">
-      <button><img src="search icon.png" alt="Search Icon"></button>
+      <button><img src="https://cdn-icons-png.flaticon.com/512/149/149852.png" alt="Search Icon" style="filter: invert(50%)"></button>
     </div>
 
     <div class="filter-buttons">
@@ -72,30 +91,5 @@
       </div>
     </div>
   </div>
-  
-  <script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const logEntries = document.querySelectorAll('.log-entry');
-
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Remove 'active' class from all buttons
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      const filter = button.textContent.toLowerCase();
-
-      logEntries.forEach(entry => {
-        if (filter === 'all') {
-          entry.style.display = 'flex';
-        } else if (entry.classList.contains(filter)) {
-          entry.style.display = 'flex';
-        } else {
-          entry.style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
 </body>
 </html>
