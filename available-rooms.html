@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rooms</title>
+    <link rel="stylesheet" href="available-rooms.css"/>
+</head>
+<body>
+    <header>
+        <!-- Hamburger Navigation Start -->
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span></span>
+            </label>
+
+            <ul class="menu__box">
+                <li><a class="menu__item" href="admin-home.html">Home</a></li>
+                <li><a class="menu__item" href="">Reserve Rooms</a></li>
+                <li><a class="menu__item" href="admin-logs.html">Logs</a></li>
+                <li><a class="menu__item" href="">Available Rooms</a></li>
+                <li><a class="menu__item" href="admin-client.html">Clients</a></li>
+                <li><a class="menu__item" href="admin-archive-details.html">History</a></li>
+                <li><a class="menu__item" href="index.html">Logout</a></li>
+            </ul>
+        </div>
+        <!-- Hamburger Navigation End -->
+
+        <div class="header-right">
+            <img src="https://github.com/kidlatpogi/WebDev/blob/main/Photos/NU%20LOGO.png?raw=true" alt="NU LOGO" class="logo"/>
+            <h1>National<br>University</h1>
+        </div>
+    </header>
+
+    <main>
+        <h2>Available Rooms</h2>
+        <div class="search-container">
+            <input type="text" id="room_number" placeholder="Enter room number..." class="search-input"/>
+            <input type="date" id="date" class="search-input"/>
+            <button class="search-btn" onclick="searchRooms()">Search</button>
+        </div>
+        <div class="results" id="results">
+            <!-- Search results will be displayed here -->
+        </div>
+    </main>
+
+    <script>
+        function searchRooms() {
+            const roomNumber = document.getElementById('room_number').value;
+            const date = document.getElementById('date').value;
+            const resultsDiv = document.getElementById('results');
+            fetch('available-rooms.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `room_number=${roomNumber}&date=${date}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultsDiv.innerHTML = '';
+                if (data.available_slots.length > 0) {
+                    const description = document.createElement('p');
+                    description.textContent = `${data.description}`;
+                    resultsDiv.appendChild(description);
+                    const title = document.createElement('h3');
+                    title.textContent = `Scheduled Times for Room ${roomNumber} on ${date}`;
+                    resultsDiv.appendChild(title);
+                    data.available_slots.forEach(slot => {
+                        const card = document.createElement('div');
+                        card.className = 'room-card';
+                        card.innerHTML = `<p><b>${slot.start_time} - ${slot.end_time}</b></p>`;
+                        resultsDiv.appendChild(card);
+                    });
+                } else {
+                    resultsDiv.innerHTML = '<p>No scheduled time slots found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultsDiv.innerHTML = '<p>An error occurred while fetching the data.</p>';
+            });
+        }
+    </script>
+</body>
+</html>
