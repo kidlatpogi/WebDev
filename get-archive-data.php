@@ -1,4 +1,4 @@
-// Description: This script retrieves completed reservation data from the database and returns it as a JSON response.
+
 <?php
 include 'connection.php';
 
