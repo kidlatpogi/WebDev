@@ -18,6 +18,7 @@ $user_first_name = explode(' ', trim($full_first_name))[0];
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NU Dasma Room Reservation</title>
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="nav-home.css" />
 </head>
 <body>
@@ -45,9 +46,10 @@ $user_first_name = explode(' ', trim($full_first_name))[0];
     <div class="user-dropdown-wrapper">
         <div id="user-dropdown">
             Hi, <?php echo htmlspecialchars($user_first_name); ?>
+            <i class="fas fa-chevron-down dropdown-icon"></i>
             
             <div id="logout-menu">
-                <button onclick="logoutUser()">Logout</button>
+              <button onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
 
         </div>

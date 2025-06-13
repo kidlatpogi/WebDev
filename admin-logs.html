@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Logs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rowdies&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rowdies&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="admin-logs.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -18,13 +19,13 @@
       </label>
 
       <ul class="menu__box">
-        <li><a class="menu__item" href="admin-home.html">Home</a></li>
-        <li><a class="menu__item" href="admin-reservation.html">Reserve Rooms</a></li>
-        <li><a class="menu__item" href="admin-logs.html">Logs</a></li>
-        <li><a class="menu__item" href="admin-available-rooms.html">Available Rooms</a></li>
-        <li><a class="menu__item" href="admin-client.html">Clients</a></li>
-        <li><a class="menu__item" href="admin-archive.html">Archive</a></li>
-        <li><a class="menu__item" href="index.html">Logout</a></li>
+        <li><a class="menu__item" href="admin-home.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a class="menu__item" href="admin-reservation.html"><i class="fas fa-calendar-check"></i> Reserve Rooms</a></li>
+        <li><a class="menu__item" href="admin-logs.html"><i class="fas fa-clipboard-list"></i> Logs</a></li>
+        <li><a class="menu__item" href="admin-available-rooms.html"><i class="fas fa-door-open"></i> Available Rooms</a></li>
+        <li><a class="menu__item" href="admin-client.html"><i class="fas fa-users"></i> Clients</a></li>
+        <li><a class="menu__item" href="admin-archive.html"><i class="fas fa-archive"></i> Archive</a></li>
+        <li><a class="menu__item" href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
       </ul>
     </div>
     <!-- Hamburger Navigation End -->
@@ -36,60 +37,26 @@
   </nav>
 
   <div class="main">
-    <h2 class="page-title">Today's Logs</h2>
+    <h2 class="page-title"><i class="fas fa-clipboard-list"></i> Logs</h2>
 
     <div class="search-box">
-      <input type="text" placeholder="Search">
-      <button><img src="https://cdn-icons-png.flaticon.com/512/149/149852.png" alt="Search Icon" style="filter: invert(50%)"></button>
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search logs...">
     </div>
 
     <div class="filter-buttons">
-      <button class="filter-btn all active">All</button>
-      <button class="filter-btn completed">Completed</button>
-      <button class="filter-btn cancelled">Cancelled</button>
-      <button class="filter-btn rescheduled">Rescheduled</button>
+      <button class="filter-btn all active"><i class="fas fa-list"></i> All</button>
+      <button class="filter-btn completed"><i class="fas fa-check-circle"></i> Completed</button>
+      <button class="filter-btn cancelled"><i class="fas fa-times-circle"></i> Cancelled</button>
     </div>
 
-    <div class="log-entry completed">
-      <span class="log-time">6:50 AM</span>
-      <div class="log-box green">
-        <p><strong>Room 401</strong><br>
-        Time: 3:00PM - 5:00PM<br>
-        Reserved by: Kenneth Q. Raper<br>
-        Status: Event completed</p>
-      </div>
-    </div>
-
-    <div class="log-entry completed">
-      <span class="log-time">7:30 AM</span>
-      <div class="log-box green">
-        <p><strong>Room 401</strong><br>
-        Time: 3:00PM - 5:00PM<br>
-        Reserved by: Kenneth Q. Raper<br>
-        Status: Event completed</p>
-      </div>
-    </div>
-
-    <div class="log-entry cancelled">
-      <span class="log-time">8:07 AM</span>
-      <div class="log-box red">
-        <p><strong>Room 401</strong><br>
-        Time: 7:00AM - 9:00AM<br>
-        Reserved by: Kenneth Q. Raper<br>
-        Status: Event Cancelled</p>
-      </div>
-    </div>
-
-    <div class="log-entry rescheduled">
-      <span class="log-time">8:46 AM</span>
-      <div class="log-box yellow">
-        <p><strong>Room 401</strong><br>
-        Time: 9:00AM - 11:00AM<br>
-        Reserved by: Kenneth Q. Raper<br>
-        Status: Event Rescheduled<br>
-        TO (3:00PM - 5:00PM)</p>
-      </div>
+    <!-- Logs container - This was missing in your version -->
+    <div class="logs-container" id="logsContainer">
+      <!-- Log entries will be dynamically inserted here by JavaScript -->
     </div>
   </div>
+
+  <!-- Script should be placed just before closing body tag -->
+  <script src="admin-logs.js"></script>
 </body>
 </html>

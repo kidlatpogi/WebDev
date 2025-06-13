@@ -12,10 +12,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT u.user_id, ud.fname, ud.lname, u.email 
+// Get filter parameter from request
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'all'; // 'all', 'admins', or 'users'
+
+// Get all non-deleted users and their details
+$sql = "SELECT u.user_id, ud.fname, ud.lname, u.email
         FROM USERS u
         INNER JOIN USER_DETAILS ud ON u.user_id = ud.user_id
-        WHERE u.is_deleted = 0"; 
+        WHERE u.is_deleted = 0";
 
 $result = $conn->query($sql);
 
@@ -29,7 +33,21 @@ $users = [];
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $users[] = $row;
+        // Dynamically assign role
+        if (preg_match('/^admin.*@admin-nu\.com$/i', $row['email'])) {
+            $row['role'] = 'admin';
+        } else {
+            $row['role'] = 'user';
+        }
+
+        // Apply filter
+        if (
+            $filter === 'all' ||
+            ($filter === 'admins' && $row['role'] === 'admin') ||
+            ($filter === 'users' && $row['role'] === 'user')
+        ) {
+            $users[] = $row;
+        }
     }
 }
 

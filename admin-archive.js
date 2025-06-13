@@ -14,18 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? new Date(reservation.completed_date).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })
                     : dateReserved;
                 html += `
-                  <div class="archive-table-row" data-index="${idx}">
-                    <div class="archive-col room">ROOM ${reservation.room_number}</div>
-                    <div class="archive-col reserved">${dateReserved}</div>
-                    <div class="archive-col completed">${dateCompleted}</div>
+                  <div class="archive-item" data-index="${idx}">
+                    <div class="archive-item-col">${'ROOM ' + reservation.room_number}</div>
+                    <div class="archive-item-col">${dateReserved}</div>
+                    <div class="archive-item-col">${dateCompleted}</div>
                   </div>
                 `;
             });
             table.innerHTML = html;
 
             // Add click event to each row
-            document.querySelectorAll('.archive-table-row').forEach(row => {
-                row.addEventListener('click', function() {
+            document.querySelectorAll('.archive-item').forEach(row => {
+                row.addEventListener('click', function () {
                     const idx = this.getAttribute('data-index');
                     showModal(reservations[idx]);
                 });
@@ -59,13 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.classList.add('blurred-background');
     }
 
-    closeModal.onclick = function() {
+    closeModal.onclick = function () {
         modalOverlay.classList.remove('active');
         mainContent.classList.remove('blurred-background');
     };
 
-    // Close modal when clicking outside the content
-    modalOverlay.onclick = function(e) {
+    modalOverlay.onclick = function (e) {
         if (e.target === modalOverlay) {
             modalOverlay.classList.remove('active');
             mainContent.classList.remove('blurred-background');

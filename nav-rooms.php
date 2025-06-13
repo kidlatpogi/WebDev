@@ -18,6 +18,8 @@ $user_first_name = explode(' ', trim($full_first_name))[0];
     <title>Rooms</title>
 
     <link rel="stylesheet" href="nav-rooms.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
     <!-- Desktop Navbar -->
@@ -42,9 +44,9 @@ $user_first_name = explode(' ', trim($full_first_name))[0];
     <div class="user-dropdown-wrapper">
         <div id="user-dropdown">
             Hi, <?php echo htmlspecialchars($user_first_name); ?>
-
+            <i class="fas fa-chevron-down dropdown-icon"></i>
             <div id="logout-menu">
-                <button onclick="logoutUser()">Logout</button>
+                <button onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
 
         </div>
@@ -73,34 +75,32 @@ $user_first_name = explode(' ', trim($full_first_name))[0];
 
     <!-- Header -->
     <div class="header-center">
-        <h1>Rooms</h1>
-    </div>
+            <h1>Available Rooms</h1>
+            <p class="subtitle">Select your preferred study space</p>
+        </div>
 
-    <!-- Chooser -->
-    <table class="chooser-table" cellpadding="5">
-        <tr>
-            <td class="radio-toolbar">
-            <input type="radio" id="4th-floor" name="floor" value="4th Floor" checked>
-            <label for="4th-floor">4th Floor</label>
-            </td>
-            <td class="radio-toolbar">
-            <input type="radio" id="5th-floor" name="floor" value="5th Floor">
-            <label for="5th-floor">5th Floor</label>
-            </td>
-        </tr>
+    <!-- Filter Controls -->
+        <div class="filter-controls">
+            <div class="filter-group">
+                <h3><i class="fas fa-building"></i> Floor Selection</h3>
+                <div class="radio-toolbar">
+                    <input type="radio" id="4th-floor" name="floor" value="4th Floor" checked>
+                    <label for="4th-floor">4th Floor</label>
+                    <input type="radio" id="5th-floor" name="floor" value="5th Floor">
+                    <label for="5th-floor">5th Floor</label>
+                </div>
+            </div>
 
-        <tr>
-            <td class="radio-toolbar">
-            <input type="radio" id="lecture-room" name="room-type" value="Lecture Room" checked>
-            <label for="lecture-room">Lecture</label>
-            </td>
-            <td class="radio-toolbar">
-            <input type="radio" id="laboratory-room" name="room-type" value="Laboratory Room">
-            <label for="laboratory-room">Laboratory</label>
-            </td>
-        </tr>
-    </table>
-
+            <div class="filter-group">
+                <h3><i class="fas fa-door-closed"></i> Room Type</h3>
+                <div class="radio-toolbar">
+                    <input type="radio" id="lecture-room" name="room-type" value="Lecture Room" checked>
+                    <label for="lecture-room">Lecture Room</label>
+                    <input type="radio" id="laboratory-room" name="room-type" value="Laboratory Room">
+                    <label for="laboratory-room">Laboratory</label>
+                </div>
+            </div>
+        </div>
 
     <!-- Room grid -->
     <div id="room-grid"></div>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-/* Place this after your @import line, before any other CSS */
+
+/* ===== GLOBAL STYLES ===== */
 body, input, button, select, textarea, label, nav, .desktop-navbar, .hamburger-menu, .account-main, .account-form, .account-photo-col, .submit-row, .header-center, .account-form-row, .account-form label, .account-form input, .account-form select, .account-form textarea {
     font-family: 'Inter', Arial, Helvetica, sans-serif !important;
 }
@@ -7,6 +8,7 @@ body, input, button, select, textarea, label, nav, .desktop-navbar, .hamburger-m
 body {
     margin: 0;
     padding-top: 60px;
+    background: url('Photos/NU Campus.png') no-repeat center center fixed;
     background-size: cover;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -21,13 +23,11 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('Photos/NU Campus.png') no-repeat center center fixed;
-    background-size: cover;
+    background-color: rgba(0,0,0,0.5);
     z-index: -1;
 }
 
-/* remove scrollbar */
-/* Firefox */
+/* Remove scrollbar */
 html, body {
     margin: 0;
     padding-top: 60px;
@@ -36,14 +36,13 @@ html, body {
     -ms-overflow-style: none;
 }
 
-/* remove scrollbar */
-/* chronium */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     width: 0px;
     background: transparent;
 }
 
+/* ===== NAVIGATION ===== */
 nav {
     position: fixed;
     top: 0;
@@ -61,7 +60,6 @@ nav {
     border-radius: 40px;
 }
 
-/* Nav container for centering and positioning */
 .nav-container {
     position: relative;
     width: 100%;
@@ -70,7 +68,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible; /* Allow content to be visible, no scroll */
+    overflow: visible;
 }
 
 nav span {
@@ -82,7 +80,6 @@ nav span {
     font-weight: 600;
 }
 
-/* Center navigation links */
 nav ul {
     list-style: none;
     display: flex;
@@ -93,26 +90,44 @@ nav ul {
     margin: 0;
 }
 
-/* Remove underline from navigation links */
 nav ul li a {
     text-decoration: none;
     color: inherit;
 }
 
-/* Logo */
 .logo-container {
     position: absolute;
     left: 30px;
     top: 10%;
+    perspective: 1000px;
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 .nu-logo {
     width: 150px;
     height: auto;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
 }
 
+/* Desktop hover effect */
+@media (min-width: 900px) {
+    .logo-container:hover .nu-logo {
+        transform: rotateY(360deg) scale(1.1);
+        filter: drop-shadow(0 5px 15px rgba(255, 212, 28, 0.4));
+    }
+}
 
-/* User dropdown on the right */
+/* Mobile tap effect */
+@media (max-width: 899px) {
+    .logo-container:active .nu-logo {
+        transform: rotateY(360deg) scale(1.05);
+        filter: drop-shadow(0 3px 10px rgba(255, 212, 28, 0.3));
+    }
+}
+
 .user-dropdown-wrapper {
     position: absolute;
     right: 30px;
@@ -160,84 +175,143 @@ nav ul li a {
     color: red;
 }
 
-/* Hide scrollbar but allow vertical scrolling */
-html, body {
-    margin: 0;
-    padding-top: 60px;
-    overflow-y: scroll;
-    scrollbar-width: none;        /* Firefox */
-    -ms-overflow-style: none;     /* IE and old Edge */
-}
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-    width: 0px;                  /* Chromium browsers like Edge */
-    background: transparent;
-}
-
-/* --- HERO SECTION --- */
+/* ===== ENHANCED HERO SECTION ===== */
 .hero {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  padding: 80px 20px 40px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.98) 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 
+              0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 5rem 3rem;
   text-align: center;
-  color: #000;
-  min-height: 62vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 40px auto;
-  max-width: 1000px;
+  color: #131A53;
+  margin: 3rem auto;
+  max-width: 1100px;
   z-index: 1;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #FFD41C, #131A53, #FFD41C);
+  background-size: 200% 100%;
+  animation: gradientFlow 8s ease infinite;
+}
 
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== HERO LOGO REVOLVING ANIMATION ===== */
 .hero-logo {
-  width: 100px;
-  margin-bottom: 12px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1.5rem;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 15px rgba(19, 26, 83, 0.2));
+  transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-style: preserve-3d;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Desktop hover effect */
+@media (min-width: 900px) {
+  .hero-logo:hover {
+    animation: none; /* Disable float animation during hover */
+    transform: rotateY(360deg) scale(1.15);
+    filter: drop-shadow(0 10px 25px rgba(255, 212, 28, 0.6));
+  }
+}
+
+/* Mobile tap effect */
+@media (max-width: 899px) {
+  .hero-logo:active {
+    animation: none; /* Disable float animation during tap */
+    transform: rotateY(360deg) scale(1.1);
+    filter: drop-shadow(0 8px 20px rgba(255, 212, 28, 0.5));
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotateY(0deg); }
+  50% { transform: translateY(-10px) rotateY(10deg); }
+  100% { transform: translateY(0px) rotateY(0deg); }
 }
 
 .hero h1 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  line-height: 1.4;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  background: linear-gradient(to right, #131A53, #4E67EB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(to right, #FFD41C, #FFA41C);
+  border-radius: 2px;
 }
 
 .hero p {
-  max-width: 600px; 
-  font-family: monospace;
-  font-size: 19px;
-  line-height: 1.2;
-  letter-spacing: 1.3px;
-  margin-bottom: 10px;
-  text-align: justify;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #444;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: normal;
 }
 
-/* --- IMAGE GALLERY --- */
+/* ===== ENHANCED IMAGE GALLERY ===== */
 .image-gallery {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 20px;
-  padding: 0 20px;
-  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  margin-top: 3rem;
 }
 
 .image-gallery img {
-  width: 200px;
-  height: 120px;
+  width: 100%;
+  height: 180px;
   object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
-/* --- FOOTER --- */
+.image-gallery img:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* ===== FOOTER ===== */
 footer {
   background-color: #1f1f1f;
   color: #ccc;
@@ -250,7 +324,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap : 20px;
+  gap: 20px;
 }
 
 .footer-left img {
@@ -266,7 +340,7 @@ footer {
 .footer-center p {
   margin: 0;
   line-height: 1.4;
-  gap : 10px;
+  gap: 10px;
 }
 
 .footer-right {
@@ -303,7 +377,7 @@ footer {
   color: white;
 }
 
-/* transitions */
+/* ===== TRANSITIONS ===== */
 @view-transition {
     navigation: auto;
 }
@@ -312,8 +386,7 @@ nav a {
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-/* Reusable responsive bar */
-/* --- Desktop Navbar Styles --- */
+/* ===== DESKTOP NAVBAR ===== */
 .desktop-navbar {
     display: flex;
     justify-content: center;
@@ -362,7 +435,7 @@ nav a {
     transform: translateY(-50%);
 }
 
-/* --- Hamburger Menu Only --- */
+/* ===== HAMBURGER MENU ===== */
 .hamburger-menu #menu__toggle {
     opacity: 0;
     position: absolute;
@@ -443,12 +516,11 @@ nav a {
     background-color: #FFD41C;
 }
 
-/* --- Responsive Visibility --- */
-/* usable in other CSS */
+/* ===== RESPONSIVE VISIBILITY ===== */
 @media (min-width: 900px) {
-.desktop-navbar {
-    display: flex !important;
-}
+    .desktop-navbar {
+        display: flex !important;
+    }
 
     .hamburger-menu {
         display: none !important;
@@ -463,4 +535,47 @@ nav a {
         display: block !important;
     }
 }
-/* End reusable responsive visibility */
+
+/* ===== RESPONSIVE ADJUSTMENTS FOR HERO ===== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 2rem;
+    margin: 2rem 1rem;
+    border-radius: 16px;
+  }
+  
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .image-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@view-transition {
+    navigation: auto;
+}

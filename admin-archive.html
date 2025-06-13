@@ -3,56 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Archives</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rowdies&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rowdies&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="admin-archive.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <div class="header">
-    <div class="logo">
-      <img src="Photos/nu-logo-label.png" alt="National University">
-    </div>
-  </div>
-  <div class="main-content-wrapper">
-    <div class="main">
-      <h2 class="page-title">Archive</h2>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search">
-        <button id="searchBtn"><img src="Photos/search-icon.png" alt="Search Icon"></button>
-      </div>
-      <div class="table-header">
-        <div>Room Reserved</div>
-        <div>Date Reserved</div>
-        <div>Date Completed</div>
-      </div>
-      <div id="archiveTable"></div>
-    </div>
-  </div>
 
-  <!-- Hamburger Nav -->
-  <div class="hamburger-menu">
-    <input id="menu__toggle" type="checkbox" />
-    <label class="menu__btn" for="menu__toggle"><span></span></label>
-    <ul class="menu__box">
-      <li><a class="menu__item" href="admin-home.html">Dashboard</a></li>
-      <li><a class="menu__item" href="admin-logs.html">Logs</a></li>
-      <li><a class="menu__item" href="admin-client.html">Clients</a></li>
-      <li><a class="menu__item" href="admin-reserved-rooms.html">Reserved Rooms</a></li>
-      <li><a class="menu__item" href="admin-available-rooms.html">Vacancies</a></li>
-      <li><a class="menu__item" href="admin-archive.html">Archive</a></li>
-      <li><a class="menu__item" href="index.html">Logout</a></li>
-    </ul>
-  </div>
+  <nav class="nav">
+    <!-- Hamburger Navigation Start -->
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox" />
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+
+      <ul class="menu__box">
+        <li><a class="menu__item" href="admin-home.html"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a class="menu__item" href="admin-logs.html"><i class="fas fa-clipboard-list"></i> Logs</a></li>
+        <li><a class="menu__item" href="admin-client.html"><i class="fas fa-users"></i> Clients</a></li>
+        <li><a class="menu__item" href="admin-reserved-rooms.html"><i class="fas fa-calendar-check"></i> Reserved Rooms</a></li>
+        <li><a class="menu__item" href="admin-available-rooms.html"><i class="fas fa-door-open"></i> Available Rooms</a></li>
+        <li><a class="menu__item" href="admin-archive.html"><i class="fas fa-archive"></i> Archive</a></li>
+        <li><a class="menu__item" href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </div>
+    <!-- Hamburger Navigation End -->
+    
+    <!-- Logo -->
+    <div class="logo">
+      <img src="Photos/nu-logo-label.png" alt="NU Logo">
+    </div>
+  </nav>
+
+  <main class="main">
+    <h2 class="page-title"><i class="fas fa-archive"></i> Archive</h2>
+    
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search archives...">
+    </div>
+
+    <div class="archive-header">
+      <div class="archive-col">Room Reserved</div>
+      <div class="archive-col">Date Reserved</div>
+      <div class="archive-col">Date Completed</div>
+    </div>
+
+    <div id="archiveTable" class="archive-container">
+      <!-- Archive items will be dynamically inserted here -->
+      <div class="no-archives">
+        <i class="fas fa-box-open"></i>
+        <p>No archived reservations found</p>
+      </div>
+    </div>
+  </main>
 
   <!-- Modal for reservation details -->
-<div id="modal-overlay" class="modal-overlay">
-  <div class="modal-content" id="modal-content">
-    <span class="close-button" id="close-modal">&times;</span>
-    <div id="modal-details"></div>
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-content" id="modal-content">
+      <span class="close-button" id="close-modal">&times;</span>
+      <h3 class="modal-title"><i class="fas fa-calendar-alt"></i> Reservation Details</h3>
+      <div id="modal-details" class="modal-grid">
+        <!-- Details will be inserted here -->
+      </div>
+    </div>
   </div>
-</div>
 
-  <!-- Fetch the js file of admin-archive -->
-<script src="admin-archive.js"></script>
+  <script src="admin-archive.js"></script>
 </body>
 </html>

@@ -1,22 +1,29 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --primary: #1F265F;
+  --secondary: #FFD41C;
+  --accent: #4E67EB;
+  --light: #F8F9FA;
+  --dark: #212529;
+  --success: #28A745;
+  --info: #17A2B8;
+  --warning: #FFC107;
+  --danger: #DC3545;
 }
 
 html, body {
   height: 100%;
-  font-family: 'Rowdies', sans-serif;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
   background-color: #f4f4f4;
-  color: #000;
+  margin: 0;
+  padding: 0;
 }
 
-/* <!-- COPY STARTS HERE--------------------------------------------------------------------------------- --> */
 /* Navigation bar */
 .nav {
-  background-color: #1F265F;
+  background-color: var(--primary);
   color: white;
-  height: 120px;
+  height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -24,120 +31,111 @@ html, body {
   padding: 0 40px;
   position: relative;
   z-index: 999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-left: auto; /* This pushes the logo to the right */
+  margin-right: 5%;
 }
 
 .logo img {
-  height: 60px;
+  height: 50px;
   max-width: 100%;
   object-fit: contain;
 }
 
-/* Right section (e.g., nav items, profile, etc.) */
-.nav .right-section {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-/* <!-- COPY ENDS HERE--------------------------------------------------------------------------------- --> */
-
 /* Main layout */
 .main {
-  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 20px;
   gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Date Titles */
 .date-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 20px 0 10px;
+  color: var(--primary);
+  font-family: 'Rowdies', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  padding-left: 20px;
 }
 
-/* Cards */
+.date-title i {
+  color: var(--secondary);
+}
+
+/* Reservation Cards */
 .reservation-card {
   background: #fff;
-  width: 90%;
-  max-width: 500px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-left: 5px solid var(--secondary);
+}
+
+.reservation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.room-type {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--primary);
+  color: white;
+  padding: 5px 10px;
   border-radius: 20px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .reservation-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  margin: 0 0 15px 0;
+  color: var(--primary);
+  font-family: 'Rowdies', sans-serif;
 }
 
-.reservation-card p {
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-/* Reusable responsive bar */
-/* --- Desktop Navbar Styles --- */
-.desktop-navbar {
+.reservation-details {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  position: fixed;
-  top: 15px;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: #1F265F;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.desktop-navbar ul {
-  display: flex;
-  gap: 70px;
-  list-style: none;
+.reservation-details p {
   margin: 0;
-  padding: 0;
+  font-size: 1rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.desktop-navbar li a {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
+.reservation-details i {
+  width: 20px;
+  color: var(--primary);
 }
 
-.desktop-navbar li a:hover {
-  color: #FFD41C;
-  transform: scale(1.1);
-  text-decoration: underline;
-}
-
-.desktop-navbar li a.active {
-  color: #FFD41C;
-  text-decoration: underline;
-  transform: scale(1.1);
-}
-
-.desktop-navbar .user-dropdown-wrapper {
-  position: absolute;
-  right: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* --- Hamburger Menu Styles (Always visible) --- */
+/* Hamburger Menu */
 .hamburger-menu {
-  display: block !important; /* Always show hamburger menu */
+  display: block !important;
 }
 
 .hamburger-menu #menu__toggle {
@@ -162,8 +160,8 @@ html, body {
 
 .hamburger-menu .menu__btn {
   position: fixed;
-  top: 30px;
-  left: 30px;
+  top: 25px;
+  left: 25px;
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -176,8 +174,8 @@ html, body {
   display: block;
   position: absolute;
   width: 100%;
-  height: 2px;
-  background-color: #FFD41C;
+  height: 3px;
+  background-color: var(--secondary);
   transition-duration: .25s;
 }
 
@@ -195,75 +193,67 @@ html, body {
   position: fixed;
   top: 0;
   left: -100%;
-  width: 300px;
+  width: 280px;
   height: 100%;
   margin: 0;
   padding: 80px 0;
   list-style: none;
   background-color: white;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, .1);
   transition-duration: .25s;
   z-index: 1099;
 }
 
 .hamburger-menu .menu__item {
-  display: block;
-  padding: 12px 24px;
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 500;
   text-decoration: none;
   transition-duration: .25s;
 }
 
-.hamburger-menu .menu__item:hover {
-  background-color: #FFD41C;
+.hamburger-menu .menu__item i {
+  margin-right: 15px;
+  width: 20px;
+  text-align: center;
+  color: var(--primary);
 }
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 899px) {
-  .desktop-navbar {
-    display: none !important;
-  }
-  
+.hamburger-menu .menu__item:hover {
+  background-color: rgba(31, 38, 95, 0.05);
+  color: var(--primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .nav {
     padding: 0 20px;
-    height: 80px;
+    height: 70px;
   }
   
   .logo img {
     height: 40px;
   }
-}
-
-@media (max-width: 768px) {
+  
   .main {
-    padding-top: 20px;
-    gap: 20px;
+    padding: 20px 15px;
   }
-
-  .date-time-row {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+  
+  .date-title {
+    font-size: 1.3rem;
+    padding-left: 15px;
   }
-
-  .info-card {
-    width: 100%;
-    min-height: 200px;
+  
+  .reservation-card {
+    padding: 20px;
   }
-
-  .card {
-    height: 200px;
-  }
-
-  .info-card h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  .info-card {
-    font-size: 16px;
+  
+  .hamburger-menu .menu__btn {
+    top: 20px;
+    left: 15px;
   }
 }
 
@@ -272,31 +262,15 @@ html, body {
     padding: 0 15px;
   }
   
-  .main {
-    padding: 20px 10px;
+  .reservation-card h3 {
+    font-size: 1.3rem;
   }
   
-  .card {
-    max-width: 100%;
-    height: 180px;
+  .reservation-details p {
+    font-size: 0.9rem;
   }
   
-  .hamburger-menu .menu__box {
-    width: 250px;
+  .room-type {
+    font-size: 0.7rem;
   }
-  
-  .hamburger-menu .menu__item {
-    font-size: 18px;
-    padding: 10px 20px;
-  }
-  
-  .hamburger-menu .menu__btn {
-    top: 25px;
-    left: 15px;
-  }
-}
-
-/* transitions */
-@view-transition {
-    navigation: auto;
 }

@@ -1,28 +1,31 @@
+/* nav-reservation.css - COMPLETE VERSION */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-/* Place this after your @import line, before any other CSS */
-body, input, button, select, textarea, label, nav, .desktop-navbar, .hamburger-menu, .account-main, .account-form, .account-photo-col, .submit-row, .header-center, .account-form-row, .account-form label, .account-form input, .account-form select, .account-form textarea {
-    font-family: 'Inter', Arial, Helvetica, sans-serif !important;
+
+/* ===== BASE STYLES ===== */
+body, input, button, select, textarea, label {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
-/* remove scrollbar */
-/* Firefox */
 html, body {
     margin: 0;
-    padding-top: 60px;
+    padding-top: 60px; /* Space for fixed navbar */
     overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
 }
 
-/* remove scrollbar */
-/* chronium */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
+    width: 0;
+    background: transparent; /* Chrome/Safari */
 }
 
-/* Navbar styles */
+body {
+    background: linear-gradient(180deg, rgba(19, 26, 83, 1) 40%, rgba(42, 58, 185, 1) 85%);
+    min-height: 100vh;
+}
+
+/* ===== NAVIGATION BAR (UNCHANGED) ===== */
 nav {
     position: fixed;
     top: 0;
@@ -33,14 +36,11 @@ nav {
     z-index: 1000;
     background: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    box-sizing: border-box;
     height: 60px;
     line-height: 60px;
-    overflow: visible;
     border-radius: 40px;
 }
 
-/* Nav container for centering and positioning */
 .nav-container {
     position: relative;
     width: 100%;
@@ -51,7 +51,6 @@ nav {
     justify-content: center;
 }
 
-/* Center navigation links */
 nav ul {
     list-style: none;
     display: flex;
@@ -62,7 +61,6 @@ nav ul {
     margin: 0;
 }
 
-/* Remove underline from navigation links */
 nav ul li a {
     text-decoration: none;
     color: inherit;
@@ -80,7 +78,7 @@ nav ul li a {
     height: auto;
 }
 
-/* User dropdown on the right */
+/* User dropdown */
 .user-dropdown-wrapper {
     position: absolute;
     right: 30px;
@@ -128,132 +126,7 @@ nav ul li a {
     color: red;
 }
 
-/* Add space so content is not hidden under navbar */
-body {
-    margin: 0;
-    padding-top: 60px;
-    background: linear-gradient(180deg,rgba(19, 26, 83, 1) 40%, rgba(42, 58, 185, 1) 85%);
-    min-height: 100vh;
-}
-
-/* Header styles */
-.header-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    margin-top: -48px;
-    margin-bottom: -16px;
-    font-size: 2rem;
-}
-
-/* Form and chooser styles */
-form {
-    max-width: 900px;
-    margin: auto;
-}
-
-.chooser-table {
-    display: flex;
-    justify-content: center;
-}
-
-.form-names,
-.form-row,
-.form-date-time {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.form-row {
-    margin-top: 20px;
-}
-
-.form-date-time {
-    margin-top: 20px;
-}
-
-.form-col {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-/* transitions */
-@view-transition {
-    navigation: auto;
-}
-
-nav a {
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-/* Reusable just tweak some of it */
-/* Account page layout */
-.account-main {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto 0 auto;
-    max-width: 700px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-/* Reusable just tweak some of it */
-.submit-row button {
-    padding: 8px 22px;
-    border-radius: 6px;
-    background: #1F265F;
-    color: #fff;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s;
-    display: block;
-    margin: 0 auto;
-}
-
-.submit-row button:hover {
-    background: #FFD41C;
-}
-
-/* fields */
-.account-form input {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-/* Add this to style all textfields like account-form input */
-input[type="text"],
-input[type="date"],
-input[type="time"],
-select {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-/* Reusable responsive bar */
-/* --- Desktop Navbar Styles --- */
+/* Desktop Navbar */
 .desktop-navbar {
     display: flex;
     justify-content: center;
@@ -295,14 +168,7 @@ select {
     transform: scale(1.1);
 }
 
-.desktop-navbar .user-dropdown-wrapper {
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-/* --- Hamburger Menu Only --- */
+/* Hamburger Menu */
 .hamburger-menu #menu__toggle {
     opacity: 0;
     position: absolute;
@@ -383,13 +249,11 @@ select {
     background-color: #FFD41C;
 }
 
-/* --- Responsive Visibility --- */
-/* usable in other CSS */
+/* Responsive Navbar Visibility */
 @media (min-width: 900px) {
-.desktop-navbar {
-    display: flex !important;
-}
-
+    .desktop-navbar {
+        display: flex !important;
+    }
     .hamburger-menu {
         display: none !important;
     }
@@ -404,53 +268,192 @@ select {
     }
 }
 
-/* Responsive styles for reservation form */
-@media (max-width: 700px) {
-    .account-main {
-        padding: 10px;
-        gap: 20px;
-    }
-    .form-names{
-        margin-top: 20px;
-    }
-    .form-row{
-        margin-top: 0px;
-    }
-    .form-date-time {
-        margin-top: 0px;
-    }
-    .form-names,
-    .form-row,
-    .form-date-time {
-        flex-direction: column;
-        gap: 0;
-        align-items: stretch;
-    }
-    .form-col {
-        width: 100%;
-    }
-    form {
-        padding: 0 5px;
-    }
-    .submit-row {
-        text-align: center;
-    }
-    input[type="date"],
-    input[type="time"],
-    select {
-        width: 100%;
-        box-sizing: border-box;
+/* ===== ENHANCED RESERVATION FORM ===== */
+.reservation-main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: white;
 }
 
-    .header-center {
-        font-size: 1.5rem;
-        margin-top: -56px;
-        margin-bottom: auto;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
+.reservation-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.decoration-line {
+    height: 2px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, #FFD41C, transparent);
+    margin: 0 15px;
+}
+
+.decoration-icon {
+    color: #FFD41C;
+    font-size: 24px;
+}
+
+.reservation-header h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.reservation-subtitle {
+    color: #FFD41C;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.reservation-form {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #1F265F;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    color: #FFD41C;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #FFD41C;
+    box-shadow: 0 0 0 3px rgba(255, 212, 28, 0.2);
+    outline: none;
+    background-color: white;
+}
+
+.reserve-btn {
+    padding: 12px 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1F265F, #3A4AA3);
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+.reserve-btn:hover {
+    background: linear-gradient(135deg, #FFD41C, #FFC000);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    color: #1F265F;
+}
+
+/* Notification System */
+#notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+    z-index: 2000;
+}
+
+.notification-success {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+.notification-error {
+    background: linear-gradient(135deg, #F44336, #C62828);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .reservation-header h1 {
+        font-size: 2rem;
     }
     
+    .reservation-subtitle {
+        font-size: 1rem;
+    }
+    
+    .reservation-form {
+        padding: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
-/* End reusable responsive visibility */
+
+@media (max-width: 480px) {
+    .reservation-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .header-decoration {
+        margin-bottom: 10px;
+    }
+    
+    .decoration-line {
+        width: 40px;
+    }
+    
+    .reservation-form {
+        padding: 15px;
+    }
+}
+
+@view-transition {
+    navigation: auto;
+}
