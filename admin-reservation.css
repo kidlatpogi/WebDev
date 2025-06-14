@@ -58,6 +58,21 @@ html, body {
   margin: 0 auto;
 }
 
+/* Search Bar */
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+}
+
 /* Date Titles */
 .date-title {
   font-size: 1.5rem;
@@ -133,9 +148,28 @@ html, body {
   color: var(--primary);
 }
 
+/* Cancel Button */
+.cancel-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #c82333;
+}
+
 /* Hamburger Menu */
 .hamburger-menu {
-  display: block !important;
+  display: block;
 }
 
 .hamburger-menu #menu__toggle {
@@ -146,14 +180,17 @@ html, body {
 .hamburger-menu #menu__toggle:checked + .menu__btn > span {
   transform: rotate(45deg);
 }
+
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::before {
   top: 0;
   transform: rotate(0deg);
 }
+
 .hamburger-menu #menu__toggle:checked + .menu__btn > span::after {
   top: 0;
   transform: rotate(90deg);
 }
+
 .hamburger-menu #menu__toggle:checked ~ .menu__box {
   left: 0 !important;
 }
@@ -183,6 +220,7 @@ html, body {
   content: '';
   top: -8px;
 }
+
 .hamburger-menu .menu__btn > span::after {
   content: '';
   top: 8px;
@@ -233,24 +271,24 @@ html, body {
     padding: 0 20px;
     height: 70px;
   }
-  
+
   .logo img {
     height: 40px;
   }
-  
+
   .main {
     padding: 20px 15px;
   }
-  
+
   .date-title {
     font-size: 1.3rem;
     padding-left: 15px;
   }
-  
+
   .reservation-card {
     padding: 20px;
   }
-  
+
   .hamburger-menu .menu__btn {
     top: 20px;
     left: 15px;
@@ -261,16 +299,37 @@ html, body {
   .nav {
     padding: 0 15px;
   }
-  
+
   .reservation-card h3 {
     font-size: 1.3rem;
   }
-  
+
   .reservation-details p {
     font-size: 0.9rem;
   }
-  
+
   .room-type {
     font-size: 0.7rem;
   }
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-bar button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: var(--accent);
 }
